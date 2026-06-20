@@ -102,7 +102,7 @@
     "Crushed by a pile of overdue assignments.",
     "Lost a prolonged fight against the school Wi-Fi.",
     "Evaporated during a particularly intense PE session.",
-    "Consumed by the lost property pile in room 7B.",
+    "Consumed by the lost property pile in DL1.",
     "Failed the vibe check administered by the hallway monitor.",
     "Asked to go to the bathroom in 2nd period and never returned.",
     "Ratioed by the teacher's red pen. Zero survivors.",
@@ -122,13 +122,16 @@
     "Perished trying to fix the projector before class started.",
     "Accidentally stapled to the bulletin board and forgotten.",
     "Sent to in-school suspension and never located again.",
-    "Achieved negative attendance and winked out of reality."
+    "Achieved negative attendance and winked out of reality.",
+    "Gooned too hard."
   ],
   "baseCombatMessages": [
     "{A} corners {B} by the lockers and makes their point physically.",
     "{A} and {B} settle their group project disagreement the old-fashioned way.",
     "{A} has had enough of {B}'s attitude in the group chat.",
     "{A} challenges {B} to a 1v1 outside the library. No spectators. Only consequences.",
-    "{A} ambushes {B} during passing period. A true coward. A true winner."
+    "{A} ambushes {B} during passing period. A true coward. A true winner.",
+    "{A} sat on {B}. What a fatass",
+    "{A} duelled {B} and aimed for the crotch"
   ]
 }
