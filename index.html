@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Australian School System</title>
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div class="topBar">
+  <div class="topTitle">The Australian School System</div>
+  <div class="topControls">
+    <button class="btnSecondary" id="themeToggle">Light</button>
+  </div>
+</div>
+
+<div id="setupScreen">
+  <div class="setupCard">
+    <div class="setupHero">
+      <h1>The Australian<br>School System</h1>
+      <p class="subtitle">A Hunger Games Simulator — but make it educational</p>
+    </div>
+    <label class="setupLabel" for="namesInput">Participants — one per line</label>
+    <textarea id="namesInput" placeholder="Nick&#10;Bob&#10;Jeff&#10;Fred&#10;Edwin"></textarea>
+    <div class="exampleNames">Enter 2 or more names. They will be processed by the Australian School System. Not all will survive.</div>
+    <button class="btnPrimary" id="startBtn" style="width:100%;font-size:1.05rem;padding:12px;">Start Simulation</button>
+  </div>
+</div>
+
+<div id="gameScreen">
+  <div class="gameControls">
+    <button class="btnPrimary" id="nextDayBtn">▶ Next Day</button>
+    <button class="btnGold" id="runEndBtn">⚡ Run to End</button>
+    <button class="btnDanger" id="resetBtn">↩ Reset</button>
+    <div class="dayBadge" id="dayBadge">Day 0</div>
+  </div>
+
+  <div class="mainArea">
+    <div id="eventLog"></div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sideSection">
+      <div class="sideSectionTitle">
+        Alive <span class="countBadge" id="aliveCount">0</span>
+      </div>
+      <div id="aliveList"></div>
+    </div>
+    <div class="sideSection">
+      <div class="sideSectionTitle">
+        Eliminated <span class="deadCountBadge" id="deadCount">0</span>
+      </div>
+      <div id="deadList"></div>
+    </div>
+  </div>
+</div>
+
+<div id="winnerScreen">
+  <div class="winnerCard">
+    <div class="winnerLabel">Sole Survivor</div>
+    <div id="winnerName"></div>
+    <div class="winnerSub">survived the Australian School System</div>
+    <div id="winnerStats"></div>
+    <div class="honorRoll">
+      <div class="honorRollTitle">Final Statistics</div>
+      <div id="honorRoll"></div>
+    </div>
+    <button class="btnPrimary" id="winnerResetBtn" style="width:100%">↩ Start New Simulation</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="game.js"></script>
+<script>
+  const origRenderGame = renderGame;
+  function renderGame() {
+    origRenderGame();
+    if (!gameState) return;
+    const alive = gameState.participants.filter(p => p.alive);
+    const dead = gameState.participants.filter(p => !p.alive);
+    document.getElementById('aliveCount').textContent = alive.length;
+    document.getElementById('deadCount').textContent = dead.length;
+    document.getElementById('dayBadge').textContent = `Day ${gameState.day - 1}`;
+  }
+
+  function spawnConfetti() {
+    const colors = ['#6d6af5','#f59e0b','#22c55e','#ef4444','#a78bfa','#f472b6'];
+    for (let i = 0; i < 60; i++) {
+      const el = document.createElement('div');
+      el.className = 'confetti';
+      el.style.cssText = `
+        left:${Math.random()*100}vw;
+        top:-10px;
+        background:${colors[Math.floor(Math.random()*colors.length)]};
+        animation-duration:${1.5 + Math.random()*2}s;
+        animation-delay:${Math.random()*0.8}s;
+        width:${6+Math.random()*8}px;
+        height:${6+Math.random()*8}px;
+      `;
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+  }
+
+  const origShowWinner = showWinner;
+  window.showWinner = function(winner) {
+    origShowWinner(winner);
+    setTimeout(spawnConfetti, 300);
+  };
+</script>
+</body>
+</html>
