@@ -140,7 +140,7 @@ function generateDayEvents() {
     if (roll < 0.30 && b) {
       const { text, damage } = resolveCombat(a, b);
       const deathMsg = b.health <= 0 ? `<span class="nameTag deathName">${b.name}</span> has been eliminated!` : `<span class="nameTag">${b.name}</span> is at ${Math.max(0, b.health)} HP.`;
-      dayLog.push({ type: 'combat', text: `${text} (${Math.max(0, damage)} damage) — ${deathMsg}` });
+      dayLog.push({ type: 'combat', text: `${text} (${Math.max(0, damage)} damage) ${deathMsg}` });
 
       if (b.health <= 0 && b.alive) {
         killParticipant(b, a, null);
@@ -182,7 +182,7 @@ function generateDayEvents() {
       } else {
         const damage = weapon ? weapon.damage + randInt(10, 30) : randInt(40, 80);
         prey.health -= damage;
-        elim = `${formatText(randFrom(eventsData.baseCombatMessages), hunter, prey)} The hit deals ${damage} damage — a decisive blow.`;
+        elim = `${formatText(randFrom(eventsData.baseCombatMessages), hunter, prey)} The hit deals ${damage} damage, a decisive blow.`;
       }
       dayLog.push({ type: 'combat forced', text: elim });
       if (prey.health <= 0 && prey.alive) {
@@ -193,7 +193,7 @@ function generateDayEvents() {
 
   if (gameState.deadThisDay.length > 0) {
     gameState.deadThisDay.forEach(d => {
-      dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${d.name}</span> — ${d.causeOfDeath}` });
+      dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${d.name}</span> ${d.causeOfDeath}` });
     });
   }
 
@@ -308,7 +308,7 @@ function renderLog() {
   gameState.eventLog.forEach(dayEntry => {
     const dayHeader = document.createElement('div');
     dayHeader.className = 'dayHeader';
-    dayHeader.textContent = `— DAY ${dayEntry.day} —`;
+    dayHeader.textContent = `DAY ${dayEntry.day}`;
     logEl.appendChild(dayHeader);
 
     dayEntry.events.forEach(ev => {
