@@ -281,6 +281,14 @@ function renderGame() {
   renderLog();
   renderParticipants();
   renderDead();
+
+  const alive = gameState.participants.filter(p => p.alive);
+  const dead = gameState.participants.filter(p => !p.alive);
+
+  document.getElementById('aliveCount').textContent = alive.length;
+  document.getElementById('deadCount').textContent = dead.length;
+  document.getElementById('dayBadge').textContent =
+      `Day ${gameState.day - 1}`;
 }
 
 const eventTypeLabel = {

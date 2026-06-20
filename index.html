@@ -74,42 +74,5 @@
 <div id="toast"></div>
 
 <script src="game.js"></script>
-<script>
-  const origRenderGame = renderGame;
-  function renderGame() {
-    origRenderGame();
-    if (!gameState) return;
-    const alive = gameState.participants.filter(p => p.alive);
-    const dead = gameState.participants.filter(p => !p.alive);
-    document.getElementById('aliveCount').textContent = alive.length;
-    document.getElementById('deadCount').textContent = dead.length;
-    document.getElementById('dayBadge').textContent = `Day ${gameState.day - 1}`;
-  }
-
-  function spawnConfetti() {
-    const colors = ['#6d6af5','#f59e0b','#22c55e','#ef4444','#a78bfa','#f472b6'];
-    for (let i = 0; i < 60; i++) {
-      const el = document.createElement('div');
-      el.className = 'confetti';
-      el.style.cssText = `
-        left:${Math.random()*100}vw;
-        top:-10px;
-        background:${colors[Math.floor(Math.random()*colors.length)]};
-        animation-duration:${1.5 + Math.random()*2}s;
-        animation-delay:${Math.random()*0.8}s;
-        width:${6+Math.random()*8}px;
-        height:${6+Math.random()*8}px;
-      `;
-      document.body.appendChild(el);
-      el.addEventListener('animationend', () => el.remove());
-    }
-  }
-
-  const origShowWinner = showWinner;
-  window.showWinner = function(winner) {
-    origShowWinner(winner);
-    setTimeout(spawnConfetti, 300);
-  };
-</script>
 </body>
 </html>
