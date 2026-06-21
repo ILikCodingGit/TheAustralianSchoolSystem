@@ -347,7 +347,7 @@ function startGame()
       name,
       alive: true,
       health: 100,
-      money: randInt(10, 50),
+      money: randInt(25, 100),
       inventory: [],
       flags: {},
       kills: 0,

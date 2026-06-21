@@ -80,13 +80,14 @@
     { "id": "r34", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)" },
     { "id": "r35", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r36", "text": "{A} found a wallet on the floor and forgot it on the bus."},
-    { "id": "r37", "text": "{A} found a wallet on the bus.", "moneyGain": 25},
+    { "id": "r37", "text": "{A} found a wallet on the bus.", "moneyGain": 50},
     { "id": "r38", "text": "{A} confessed their love to {B} and was rejected so bad even the teachers felt bad"},
     { "id": "r39", "text": "{A} confessed their love to {B} and somehow succeeded"},
     { "id": "r40", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r41", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r42", "text": "{A} was simping on {B} and was exiled from the friend group." },
-    { "id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)" }
+    { "id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)" },
+    { "id": "r44", "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20", "moneyGain":20, "moneyLoss": 10}
   ],
   "shopItems": [
     { "id": "ruler", "name": "Ruler", "cost": 5, "tier": "cheap", "damage": 5, "description": "A 30cm weapon of minor annoyance." },
