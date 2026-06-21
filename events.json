@@ -87,7 +87,8 @@
     { "id": "r41", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r42", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)" },
-    { "id": "r44", "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20", "moneyGain":20, "moneyLoss": 10}
+    { "id": "r44", "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20", "moneyGain":20, "moneyLoss": 10},
+    { "id": "r45", "text": "{A} restarted the USSR and declared war on PE"}
   ],
   "shopItems": [
     { "id": "ruler", "name": "Ruler", "cost": 5, "tier": "cheap", "damage": 5, "description": "A 30cm weapon of minor annoyance." },
@@ -121,7 +122,7 @@
     { "id": "nursePass", "name": "Nurse's Hall Pass", "cost": 15, "tier": "mid", "damage": 0, "heal": 40, "consumable": true, "description": "Skip class AND recover HP. Peak resource." },
     { "id": "proteinBar", "name": "Protein Bar", "cost": 10, "tier": "cheap", "damage": 0, "heal": 20, "consumable": true, "description": "Tastes like cardboard. Smells like victory." },
     { "id": "firstAidKit", "name": "First Aid Kit", "cost": 22, "tier": "mid", "damage": 0, "heal": 55, "consumable": true, "description": "Stolen from the sports shed. Fully stocked." },
-    { "id": "chocolateMilk", "name": "Chocolate Milk Carton", "cost": 3, "tier": "cheap", "damage": 0, "heal": 10, "consumable": true, "description": "The nectar of primary school gods." },
+    { "id": "chocolateMilk", "name": "Chocolate Milk Carton", "cost": 15, "tier": "cheap", "damage": 0, "heal": 10, "consumable": true, "description": "The nectar of primary school gods." },
     { "id": "teachersCoffee", "name": "Teacher's Coffee Mug", "cost": 30, "tier": "mid", "damage": 0, "heal": 60, "consumable": true, "description": "Stolen from the staffroom. Dangerously strong. Fully restores focus." },
     { "id": "mysteryPill", "name": "Nurse's Mystery Pill", "cost": 50, "tier": "legendary", "damage": 0, "heal": 100, "consumable": true, "description": "Nobody knows what it is. It fixes everything." },
     { "id": "animeGirl", "name": "Anime girl", "cost": 30, "tier": "legendary", "damage": 10, "heal":100, "description": "Why is bro buying waifus, what a weirdo"}
@@ -215,19 +216,19 @@
     "Asked a question during the last five minutes of class. Did not survive the reaction."
   ],
   "healEvents": [
-    { "id": "h1", "text": "{A} visits the nurse complaining of a 'stomach ache' and leaves suspiciously well." },
+    { "id": "h1", "text": "{A} was found with white substance dripping from their pants", "heal":1 },
     { "id": "h2", "text": "{A} finds a stash of snacks hidden behind the gym bleachers and helps themselves." },
     { "id": "h3", "text": "{A} meditates in the library for an entire free period. Unironically helps." },
     { "id": "h4", "text": "{A} skips PE by hiding in a bathroom cubicle and emerges surprisingly refreshed." },
     { "id": "h5", "text": "{A} drinks directly from the water fountain for three minutes straight." },
     { "id": "h6", "text": "{A} sweet-talks the canteen lady into an extra serve. The extra serve was massive." },
     { "id": "h7", "text": "{A} naps through double maths and wakes up a new person." },
-    { "id": "h8", "text": "{A} does exactly one (1) push-up during PE and calls it a full recovery session." },
+    { "id": "h8", "text": "{A} does exactly one 1 push-up during PE and calls it a full recovery session." },
     { "id": "h9", "text": "{A} finds a vending machine restock and clears out the healthy options. Questionable, but effective." },
     { "id": "h10", "text": "{A} receives an unsolicited hug from the school counsellor. It works." },
     { "id": "h11", "text": "{A} discovers the staff fridge and helps themselves to someone's clearly labelled yoghurt." },
     { "id": "h12", "text": "{A} sits in the sun during lunch and simply absorbs vitality like a lizard." },
-    { "id": "h13", "text": "{A} gets peer-pressured into eating someone's leftover birthday cake. No complaints." },
+    { "id": "h13", "text": "{A} was sent to the school nurse who put ice on them.", "heal":100 },
     { "id": "h14", "text": "{A} calls their mum to complain about school. She says 'just drink some water'. It works." },
     { "id": "h15", "text": "{A} spends recess doing absolutely nothing and recovers at an alarming rate." }
   ],

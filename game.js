@@ -95,7 +95,7 @@ function killParticipant(participant, killer, cause)
 
 function tryBuyItems(participant)
 {
-  const needsHealing = participant.health < 70;
+  const needsHealing = participant.health < 30;
   const messages = [];
   const trait = participant.trait;
 
