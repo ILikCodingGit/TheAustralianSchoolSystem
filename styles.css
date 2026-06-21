@@ -583,3 +583,43 @@ z-index: 400;
   border-color: var(--text);
   background: var(--bg3);
 }
+.traitBadge {
+font-size: 0.67rem;
+font-weight: 700;
+letter-spacing: 0.06em;
+padding: 2px 8px;
+border-radius: 4px;
+display: inline-block;
+margin-bottom: 6px;
+}
+
+.trait-smart {
+background: rgba(96,165,250,0.15);
+color: #60a5fa;
+border: 1px solid rgba(96,165,250,0.3);
+}
+
+.trait-greedy {
+background: rgba(245,158,11,0.15);
+color: var(--gold);
+border: 1px solid rgba(245,158,11,0.3);
+}
+
+.trait-saver {
+background: rgba(34,197,94,0.15);
+color: #4ade80;
+border: 1px solid rgba(34,197,94,0.3);
+}
+
+.revengeIndicator {
+font-size: 0.72rem;
+color: #f87171;
+margin-top: 4px;
+margin-bottom: 2px;
+font-style: italic;
+}
+
+.revengeTag {
+background: rgba(239,68,68,0.35);
+color: #fca5a5;
+}

@@ -2,6 +2,14 @@ let eventsData = null;
 let gameState = null;
 let isRunning = false;
 
+const TRAITS = ['smart', 'greedy', 'saver'];
+
+const TRAIT_META = {
+  smart:  { label: '🧠 Smart',  desc: 'Saves up for expensive items' },
+  greedy: { label: '🤑 Greedy', desc: 'Buys as many items as possible' },
+  saver:  { label: '🪙 Saver',  desc: 'Only buys when desperate' }
+};
+
 async function loadEvents()
 {
   const res = await fetch('events.json');
@@ -72,6 +80,15 @@ function killParticipant(participant, killer, cause)
   if (killer)
   {
     killer.kills++;
+    killer.revengeTarget = null;
+  }
+  if (participant.revengeTarget)
+  {
+    const target = gameState.participants.find(p => p.name === participant.revengeTarget && p.alive);
+    if (target)
+    {
+      target.revengeTarget = null;
+    }
   }
   gameState.deadThisDay.push(participant);
 }
@@ -79,6 +96,58 @@ function killParticipant(participant, killer, cause)
 function tryBuyItems(participant)
 {
   const needsHealing = participant.health < 70;
+  const messages = [];
+  const trait = participant.trait;
+
+  if (trait === 'saver')
+  {
+    if (!needsHealing) return messages;
+    const healItems = eventsData.shopItems
+      .filter(i => i.consumable && i.cost <= participant.money)
+      .sort((a, b) => a.cost - b.cost);
+    const item = healItems[0];
+    if (item)
+    {
+      participant.money -= item.cost;
+      const before = participant.health;
+      participant.health = Math.min(100, participant.health + item.heal);
+      const gained = participant.health - before;
+      messages.push(`<span class="nameTag">${participant.name}</span> reluctantly spent $${item.cost} on a <strong>${item.name}</strong>, recovering ${gained} HP. (${participant.health} HP)`);
+    }
+    return messages;
+  }
+
+  if (trait === 'smart')
+  {
+    const legendary = eventsData.shopItems
+      .filter(i => i.tier === 'legendary' && !i.consumable && !participant.inventory.includes(i.id))
+      .sort((a, b) => b.cost - a.cost);
+    const target = legendary[0];
+    const threshold = target ? target.cost : 60;
+
+    if (needsHealing)
+    {
+      const healItem = eventsData.shopItems
+        .filter(i => i.consumable && i.cost <= participant.money)
+        .sort((a, b) => a.cost - b.cost)[0];
+      if (healItem)
+      {
+        participant.money -= healItem.cost;
+        const before = participant.health;
+        participant.health = Math.min(100, participant.health + healItem.heal);
+        const gained = participant.health - before;
+        messages.push(`<span class="nameTag">${participant.name}</span> spent $${healItem.cost} on a <strong>${healItem.name}</strong>, recovering ${gained} HP. (${participant.health} HP)`);
+      }
+    }
+
+    if (target && participant.money >= threshold)
+    {
+      participant.money -= target.cost;
+      participant.inventory.push(target.id);
+      messages.push(`<span class="nameTag">${participant.name}</span> finally splurged $${target.cost} on a <strong>${target.name}</strong>. ${target.description}`);
+    }
+    return messages;
+  }
 
   const affordable = eventsData.shopItems
     .filter(i =>
@@ -89,7 +158,6 @@ function tryBuyItems(participant)
     })
     .sort((a, b) => b.cost - a.cost);
 
-  const messages = [];
   for (const item of affordable)
   {
     if (participant.money >= item.cost)
@@ -158,7 +226,35 @@ function resolveCombat(attacker, defender)
 
   const actualDamage = Math.max(0, damage - getDefense(defender));
   defender.health -= actualDamage;
+
+  if (defender.alive && actualDamage > 0)
+  {
+    if (!defender.revengeTarget)
+    {
+      defender.revengeTarget = attacker.name;
+    }
+  }
+
   return { text: combatMsg, damage: actualDamage };
+}
+
+function pickAttackerAndTarget(aliveNow)
+{
+  const revengeAttackers = aliveNow.filter(p =>
+  {
+    if (!p.revengeTarget) return false;
+    return aliveNow.some(o => o.name === p.revengeTarget);
+  });
+
+  if (revengeAttackers.length > 0 && Math.random() < 0.65)
+  {
+    const attacker = randFrom(revengeAttackers);
+    const defender = aliveNow.find(o => o.name === attacker.revengeTarget);
+    return { attacker, defender, isRevenge: true };
+  }
+
+  const [a, b] = pickTwo(aliveNow);
+  return { attacker: a, defender: b, isRevenge: false };
 }
 
 function generateDayEvents()
@@ -197,16 +293,17 @@ function generateDayEvents()
       break;
     }
 
-    const [a, b] = aliveNow.length >= 2 ? pickTwo(aliveNow) : [aliveNow[0], null];
     const roll = Math.random();
 
-    if (roll < 0.30 && b)
+    if (roll < 0.30 && aliveNow.length >= 2)
     {
+      const { attacker: a, defender: b, isRevenge } = pickAttackerAndTarget(aliveNow);
       const { text, damage } = resolveCombat(a, b);
       const hpMsg = b.health > 0
         ? ` <span class="nameTag">${b.name}</span> is at ${b.health} HP.`
         : '';
-      dayLog.push({ type: 'combat', text: `${text} (${Math.max(0, damage)} damage)${hpMsg}` });
+      const revengePrefix = isRevenge ? `<span class="logTag revengeTag">REVENGE</span> ` : '';
+      dayLog.push({ type: 'combat', text: `${revengePrefix}${text} (${Math.max(0, damage)} damage)${hpMsg}` });
 
       if (b.health <= 0 && b.alive)
       {
@@ -214,61 +311,68 @@ function generateDayEvents()
         elimHappened = true;
       }
     }
-    else if (roll < 0.38 && a.health < 80)
+    else
     {
-      const ev = randFrom(eventsData.healEvents);
-      const healAmt = randInt(10, 30);
-      const before = a.health;
-      a.health = Math.min(100, a.health + healAmt);
-      const gained = a.health - before;
-      const text = formatText(ev.text, a, b);
-      dayLog.push({ type: 'heal', text: `${text} <em>(+${gained} HP → ${a.health} HP)</em>` });
-    }
-    else if (roll < 0.45)
-    {
-      const followUps = eventsData.followUpEvents.filter(e => a.flags[e.requireFlag]);
-      if (followUps.length)
+      const a = randFrom(aliveNow);
+      const others = aliveNow.filter(p => p !== a);
+      const b = others.length ? randFrom(others) : null;
+
+      if (roll < 0.38 && a.health < 80)
       {
-        const ev = randFrom(followUps);
+        const ev = randFrom(eventsData.healEvents);
+        const healAmt = randInt(10, 30);
+        const before = a.health;
+        a.health = Math.min(100, a.health + healAmt);
+        const gained = a.health - before;
+        const text = formatText(ev.text, a, b);
+        dayLog.push({ type: 'heal', text: `${text} <em>(+${gained} HP → ${a.health} HP)</em>` });
+      }
+      else if (roll < 0.45)
+      {
+        const followUps = eventsData.followUpEvents.filter(e => a.flags[e.requireFlag]);
+        if (followUps.length)
+        {
+          const ev = randFrom(followUps);
+          let text = formatText(ev.text, a, b);
+          if (ev.moneyGain)
+          {
+            a.money += ev.moneyGain;
+            text += ` (+$${ev.moneyGain})`;
+          }
+          if (ev.healthGain)
+          {
+            a.health = Math.min(100, a.health + ev.healthGain);
+            text += ` (+${ev.healthGain} HP)`;
+          }
+          dayLog.push({ type: 'followup', text });
+        }
+        else
+        {
+          const ev = randFrom(eventsData.normalEvents);
+          processNormalEvent(ev, a, b, dayLog);
+        }
+      }
+      else if (roll < 0.70)
+      {
+        const ev = randFrom(eventsData.normalEvents);
+        processNormalEvent(ev, a, b, dayLog);
+      }
+      else
+      {
+        const ev = randFrom(eventsData.randomEvents);
         let text = formatText(ev.text, a, b);
         if (ev.moneyGain)
         {
           a.money += ev.moneyGain;
           text += ` (+$${ev.moneyGain})`;
         }
-        if (ev.healthGain)
+        if (ev.moneyLoss && b)
         {
-          a.health = Math.min(100, a.health + ev.healthGain);
-          text += ` (+${ev.healthGain} HP)`;
+          b.money = Math.max(0, b.money - ev.moneyLoss);
+          text += ` (${b.name} -$${ev.moneyLoss})`;
         }
-        dayLog.push({ type: 'followup', text });
+        dayLog.push({ type: 'random', text });
       }
-      else
-      {
-        const ev = randFrom(eventsData.normalEvents);
-        processNormalEvent(ev, a, b, dayLog);
-      }
-    }
-    else if (roll < 0.70)
-    {
-      const ev = randFrom(eventsData.normalEvents);
-      processNormalEvent(ev, a, b, dayLog);
-    }
-    else
-    {
-      const ev = randFrom(eventsData.randomEvents);
-      let text = formatText(ev.text, a, b);
-      if (ev.moneyGain)
-      {
-        a.money += ev.moneyGain;
-        text += ` (+$${ev.moneyGain})`;
-      }
-      if (ev.moneyLoss && b)
-      {
-        b.money = Math.max(0, b.money - ev.moneyLoss);
-        text += ` (${b.name} -$${ev.moneyLoss})`;
-      }
-      dayLog.push({ type: 'random', text });
     }
   }
 
@@ -277,7 +381,7 @@ function generateDayEvents()
     const aliveNow = gameState.participants.filter(p => p.alive);
     if (aliveNow.length >= 2)
     {
-      const [hunter, prey] = pickTwo(aliveNow);
+      const { attacker: hunter, defender: prey, isRevenge } = pickAttackerAndTarget(aliveNow);
       const weapon = getBestWeapon(hunter);
       let elim;
       if (weapon && weapon.special === 'admin')
@@ -291,7 +395,8 @@ function generateDayEvents()
         prey.health -= damage;
         elim = `${formatText(randFrom(eventsData.baseCombatMessages), hunter, prey)} The hit deals ${damage} damage, a decisive blow.`;
       }
-      dayLog.push({ type: 'combat forced', text: elim });
+      const revengePrefix = isRevenge ? `<span class="logTag revengeTag">REVENGE</span> ` : '';
+      dayLog.push({ type: 'combat forced', text: `${revengePrefix}${elim}` });
       if (prey.health <= 0 && prey.alive)
       {
         killParticipant(prey, hunter, null);
@@ -352,7 +457,9 @@ function startGame()
       flags: {},
       kills: 0,
       causeOfDeath: null,
-      killedBy: null
+      killedBy: null,
+      revengeTarget: null,
+      trait: randFrom(TRAITS)
     })),
     eventLog: [],
     day: 1,
@@ -499,12 +606,20 @@ function renderParticipants()
       const item = eventsData.shopItems.find(i => i.id === iId);
       return item ? `<span class="itemTag ${item.tier}">${item.name}</span>` : '';
     }).join('');
+
+    const traitMeta = TRAIT_META[p.trait];
+    const revengeInfo = p.revengeTarget
+      ? `<div class="revengeIndicator">🎯 Targeting ${p.revengeTarget}</div>`
+      : '';
+
     card.innerHTML = `
       <div class="cardName">${p.name}</div>
+      <div class="traitBadge trait-${p.trait}">${traitMeta.label}</div>
       <div class="cardStats">
         <div class="hpBar"><div class="hpFill" style="width:${Math.max(0,p.health)}%;background:${hpColor}"></div></div>
         <div class="statRow"><span>❤️ ${Math.max(0,p.health)}</span><span>💰 $${p.money}</span><span>⚔️ ${p.kills}</span></div>
       </div>
+      ${revengeInfo}
       ${items ? `<div class="itemList">${items}</div>` : ''}
     `;
     el.appendChild(card);
@@ -524,8 +639,10 @@ function renderDead()
       const item = eventsData.shopItems.find(i => i.id === iId);
       return item ? `<span class="itemTag ${item.tier}">${item.name}</span>` : '';
     }).join('');
+    const traitMeta = TRAIT_META[p.trait];
     card.innerHTML = `
       <div class="cardName deadName">${p.name}</div>
+      <div class="traitBadge trait-${p.trait}" style="opacity:0.6">${traitMeta.label}</div>
       <div class="deathCause">${p.causeOfDeath}</div>
       ${p.killedBy ? `<div class="killedBy">Eliminated by ${p.killedBy}</div>` : ''}
       <div class="statRow"><span>💰 $${p.money}</span><span>⚔️ ${p.kills} kills</span></div>
@@ -549,11 +666,14 @@ function showWinner(winner)
     return item ? `<span class="itemTag ${item.tier}">${item.name}</span>` : '';
   }).join('');
 
+  const traitMeta = TRAIT_META[winner.trait];
+
   document.getElementById('winnerName').textContent = winner.name;
   document.getElementById('winnerStats').innerHTML = `
     <div class="winStat">⚔️ Kills: ${winner.kills}</div>
     <div class="winStat">💰 Money: $${winner.money}</div>
     <div class="winStat">❤️ Final HP: ${winner.health}</div>
+    <div class="winStat"><span class="traitBadge trait-${winner.trait}">${traitMeta.label}</span></div>
     ${inventoryList ? `<div class="winInventory">${inventoryList}</div>` : '<div class="winStat">No items.</div>'}
   `;
   document.getElementById('honorRoll').innerHTML = `
