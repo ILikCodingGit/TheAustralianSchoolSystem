@@ -535,6 +535,24 @@ function showWinner(winner)
   setTimeout(() => el.classList.add('visible'), 50);
 }
 
+function closeWinner()
+{
+  const el = document.getElementById('winnerScreen');
+  el.classList.remove('visible');
+  setTimeout(() =>
+  {
+    el.style.display = 'none';
+  }, 300);
+
+  // Disable game controls since the simulation is over
+  document.getElementById('nextDayBtn').disabled = true;
+  document.getElementById('runEndBtn').disabled = true;
+
+  // Scroll log to bottom so they can read from the end
+  const logEl = document.getElementById('eventLog');
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
 function resetGame()
 {
   gameState = null;
@@ -542,6 +560,8 @@ function resetGame()
   document.getElementById('winnerScreen').classList.remove('visible');
   document.getElementById('gameScreen').style.display = 'none';
   document.getElementById('setupScreen').style.display = 'flex';
+  document.getElementById('nextDayBtn').disabled = false;
+  document.getElementById('runEndBtn').disabled = false;
 }
 
 function showToast(msg)
@@ -568,4 +588,14 @@ document.addEventListener('DOMContentLoaded', async () =>
   document.getElementById('resetBtn').addEventListener('click', resetGame);
   document.getElementById('themeToggle').addEventListener('click', toggleTheme);
   document.getElementById('winnerResetBtn').addEventListener('click', resetGame);
+  document.getElementById('winnerCloseBtn').addEventListener('click', closeWinner);
+
+  // Also close when clicking the dark backdrop outside the popup card
+  document.getElementById('winnerScreen').addEventListener('click', (e) =>
+  {
+    if (e.target === document.getElementById('winnerScreen'))
+    {
+      closeWinner();
+    }
+  });
 });
