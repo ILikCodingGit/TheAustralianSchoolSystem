@@ -112,7 +112,7 @@
     { "id": "tank", "name": "Tank", "cost": 80, "tier": "legendary", "damage": 75, "description": "Somehow fits in the hallway." },
     { "id": "pirateShip", "name": "Pirate Ship", "cost": 75, "tier": "legendary", "damage": 50, "description": "Parked in the gym pool." },
     { "id": "mechSuit", "name": "Mech Suit", "cost": 90, "tier": "legendary", "damage": 60, "defense": 20, "description": "Assembled from STEM class scraps." },
-    { "id": "portalGun", "name": "Portal Gun", "cost": 85, "tier": "legendary", "damage": 45, "special": "portal", "description": "Results may vary. Void where prohibited." },
+    { "id": "portalGun", "name": "Portal Gun", "cost": 70, "tier": "legendary", "damage": 45, "special": "portal", "description": "Results may vary. Void where prohibited." },
     { "id": "adminAccess", "name": "Administrative Access", "cost": 100, "tier": "legendary", "damage": 99, "special": "admin", "description": "Root access to the school mainframe." },
     { "id": "blackHoleEraser", "name": "Black Hole Eraser", "cost": 70, "tier": "legendary", "damage": 55, "description": "Erases more than just mistakes." },
     { "id": "timetableOfDoom", "name": "Timetable of Doom", "cost": 65, "tier": "legendary", "damage": 48, "description": "Schedules the opponent for 8am PE every day forever." },
@@ -123,7 +123,8 @@
     { "id": "firstAidKit", "name": "First Aid Kit", "cost": 22, "tier": "mid", "damage": 0, "heal": 55, "consumable": true, "description": "Stolen from the sports shed. Fully stocked." },
     { "id": "chocolateMilk", "name": "Chocolate Milk Carton", "cost": 3, "tier": "cheap", "damage": 0, "heal": 10, "consumable": true, "description": "The nectar of primary school gods." },
     { "id": "teachersCoffee", "name": "Teacher's Coffee Mug", "cost": 30, "tier": "mid", "damage": 0, "heal": 60, "consumable": true, "description": "Stolen from the staffroom. Dangerously strong. Fully restores focus." },
-    { "id": "mysteryPill", "name": "Nurse's Mystery Pill", "cost": 50, "tier": "legendary", "damage": 0, "heal": 100, "consumable": true, "description": "Nobody knows what it is. It fixes everything." }
+    { "id": "mysteryPill", "name": "Nurse's Mystery Pill", "cost": 50, "tier": "legendary", "damage": 0, "heal": 100, "consumable": true, "description": "Nobody knows what it is. It fixes everything." },
+    { "id": "animeGirl", "name": "Anime girl", "cost": 30, "tier": "legendary", "damage": 10, "heal":100, "description": "Why is bro buying waifus, what a weirdo"}
   ],
   "combatEvents": [
     { "weapon": "ruler", "text": "{A} slaps {B} across the knuckles with a ruler like it's 1952." },
@@ -199,6 +200,8 @@
     "Sent to in-school suspension and never located again.",
     "Achieved negative attendance and winked out of reality.",
     "Gooned too hard.",
+    "Gooned too hard.",
+    "Gooned too hard.", 
     "Was found in the sewers pretending to be TMNT",
     "Scheduled for a free period that turned out to be a void.",
     "Finished an exam early and was not seen again.",
