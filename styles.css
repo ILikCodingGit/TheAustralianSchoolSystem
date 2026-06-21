@@ -262,6 +262,7 @@ animation: slideIn 0.22s ease;
 .combatEntry { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.05); }
 .deathEntry { border-color: rgba(239,68,68,0.6); background: rgba(239,68,68,0.1); animation: flashRed 0.5s ease; }
 .shopEntry { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05); }
+.healEntry { border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05); }
 
 .logTag {
 font-size: 0.62rem;
@@ -278,6 +279,7 @@ flex-shrink: 0;
 .combatTag { background: rgba(239,68,68,0.2); color: #f87171; }
 .deathTag { background: rgba(239,68,68,0.5); color: #fff; }
 .shopTag { background: rgba(245,158,11,0.2); color: var(--gold); }
+.healTag { background: rgba(34,197,94,0.2); color: #4ade80; }
 
 .nameTag {
 font-weight: 700;

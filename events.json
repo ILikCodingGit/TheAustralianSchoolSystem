@@ -86,8 +86,7 @@
     { "id": "r40", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r41", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r42", "text": "{A} was simping on {B} and was exiled from the friend group." },
-    { "id": "r43", "text": "{A} was simping on {B} and was exiled from the friend group." },
-    { "id": "r44", "text": "{A} was simping on {B} and was exiled from the friend group." }
+    { "id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)" }
   ],
   "shopItems": [
     { "id": "ruler", "name": "Ruler", "cost": 5, "tier": "cheap", "damage": 5, "description": "A 30cm weapon of minor annoyance." },
@@ -115,7 +114,15 @@
     { "id": "portalGun", "name": "Portal Gun", "cost": 85, "tier": "legendary", "damage": 45, "special": "portal", "description": "Results may vary. Void where prohibited." },
     { "id": "adminAccess", "name": "Administrative Access", "cost": 100, "tier": "legendary", "damage": 99, "special": "admin", "description": "Root access to the school mainframe." },
     { "id": "blackHoleEraser", "name": "Black Hole Eraser", "cost": 70, "tier": "legendary", "damage": 55, "description": "Erases more than just mistakes." },
-    { "id": "timetableOfDoom", "name": "Timetable of Doom", "cost": 65, "tier": "legendary", "damage": 48, "description": "Schedules the opponent for 8am PE every day forever." }
+    { "id": "timetableOfDoom", "name": "Timetable of Doom", "cost": 65, "tier": "legendary", "damage": 48, "description": "Schedules the opponent for 8am PE every day forever." },
+    { "id": "canteenPie", "name": "Canteen Meat Pie", "cost": 4, "tier": "cheap", "damage": 0, "heal": 15, "consumable": true, "description": "Dubious origins. Restorative nonetheless." },
+    { "id": "energyDrink", "name": "Banned Energy Drink", "cost": 8, "tier": "cheap", "damage": 0, "heal": 25, "consumable": true, "description": "Confiscated from the canteen. Still works." },
+    { "id": "nursePass", "name": "Nurse's Hall Pass", "cost": 15, "tier": "mid", "damage": 0, "heal": 40, "consumable": true, "description": "Skip class AND recover HP. Peak resource." },
+    { "id": "proteinBar", "name": "Protein Bar", "cost": 10, "tier": "cheap", "damage": 0, "heal": 20, "consumable": true, "description": "Tastes like cardboard. Smells like victory." },
+    { "id": "firstAidKit", "name": "First Aid Kit", "cost": 22, "tier": "mid", "damage": 0, "heal": 55, "consumable": true, "description": "Stolen from the sports shed. Fully stocked." },
+    { "id": "chocolateMilk", "name": "Chocolate Milk Carton", "cost": 3, "tier": "cheap", "damage": 0, "heal": 10, "consumable": true, "description": "The nectar of primary school gods." },
+    { "id": "teachersCoffee", "name": "Teacher's Coffee Mug", "cost": 30, "tier": "mid", "damage": 0, "heal": 60, "consumable": true, "description": "Stolen from the staffroom. Dangerously strong. Fully restores focus." },
+    { "id": "mysteryPill", "name": "Nurse's Mystery Pill", "cost": 50, "tier": "legendary", "damage": 0, "heal": 100, "consumable": true, "description": "Nobody knows what it is. It fixes everything." }
   ],
   "combatEvents": [
     { "weapon": "ruler", "text": "{A} slaps {B} across the knuckles with a ruler like it's 1952." },
@@ -202,6 +209,23 @@
     "Photocopied themselves by accident during media class. Neither copy survived.",
     "Tripped on the oval during cross country. The race continued without them.",
     "Asked a question during the last five minutes of class. Did not survive the reaction."
+  ],
+  "healEvents": [
+    { "id": "h1", "text": "{A} visits the nurse complaining of a 'stomach ache' and leaves suspiciously well." },
+    { "id": "h2", "text": "{A} finds a stash of snacks hidden behind the gym bleachers and helps themselves." },
+    { "id": "h3", "text": "{A} meditates in the library for an entire free period. Unironically helps." },
+    { "id": "h4", "text": "{A} skips PE by hiding in a bathroom cubicle and emerges surprisingly refreshed." },
+    { "id": "h5", "text": "{A} drinks directly from the water fountain for three minutes straight." },
+    { "id": "h6", "text": "{A} sweet-talks the canteen lady into an extra serve. The extra serve was massive." },
+    { "id": "h7", "text": "{A} naps through double maths and wakes up a new person." },
+    { "id": "h8", "text": "{A} does exactly one (1) push-up during PE and calls it a full recovery session." },
+    { "id": "h9", "text": "{A} finds a vending machine restock and clears out the healthy options. Questionable, but effective." },
+    { "id": "h10", "text": "{A} receives an unsolicited hug from the school counsellor. It works." },
+    { "id": "h11", "text": "{A} discovers the staff fridge and helps themselves to someone's clearly labelled yoghurt." },
+    { "id": "h12", "text": "{A} sits in the sun during lunch and simply absorbs vitality like a lizard." },
+    { "id": "h13", "text": "{A} gets peer-pressured into eating someone's leftover birthday cake. No complaints." },
+    { "id": "h14", "text": "{A} calls their mum to complain about school. She says 'just drink some water'. It works." },
+    { "id": "h15", "text": "{A} spends recess doing absolutely nothing and recovers at an alarming rate." }
   ],
   "baseCombatMessages": [
     "{A} corners {B} by the lockers and makes their point physically.",

@@ -78,17 +78,35 @@ function killParticipant(participant, killer, cause)
 
 function tryBuyItems(participant)
 {
+  const needsHealing = participant.health < 70;
+
   const affordable = eventsData.shopItems
-    .filter(i => i.cost <= participant.money && !participant.inventory.includes(i.id))
+    .filter(i =>
+    {
+      if (i.cost > participant.money) return false;
+      if (i.consumable) return needsHealing;
+      return !participant.inventory.includes(i.id);
+    })
     .sort((a, b) => b.cost - a.cost);
+
   const messages = [];
   for (const item of affordable)
   {
     if (participant.money >= item.cost)
     {
       participant.money -= item.cost;
-      participant.inventory.push(item.id);
-      messages.push(`<span class="nameTag">${participant.name}</span> spent $${item.cost} on a <strong>${item.name}</strong>. ${item.description}`);
+      if (item.consumable && item.heal)
+      {
+        const before = participant.health;
+        participant.health = Math.min(100, participant.health + item.heal);
+        const gained = participant.health - before;
+        messages.push(`<span class="nameTag">${participant.name}</span> spent $${item.cost} on a <strong>${item.name}</strong> and used it immediately, recovering ${gained} HP. (${participant.health} HP)`);
+      }
+      else
+      {
+        participant.inventory.push(item.id);
+        messages.push(`<span class="nameTag">${participant.name}</span> spent $${item.cost} on a <strong>${item.name}</strong>. ${item.description}`);
+      }
     }
   }
   return messages;
@@ -185,16 +203,26 @@ function generateDayEvents()
     if (roll < 0.30 && b)
     {
       const { text, damage } = resolveCombat(a, b);
-      const deathMsg = b.health <= 0
-        ? `<span class="nameTag deathName">${b.name}</span> has been eliminated!`
-        : `<span class="nameTag">${b.name}</span> is at ${Math.max(0, b.health)} HP.`;
-      dayLog.push({ type: 'combat', text: `${text} (${Math.max(0, damage)} damage) ${deathMsg}` });
+      const hpMsg = b.health > 0
+        ? ` <span class="nameTag">${b.name}</span> is at ${b.health} HP.`
+        : '';
+      dayLog.push({ type: 'combat', text: `${text} (${Math.max(0, damage)} damage)${hpMsg}` });
 
       if (b.health <= 0 && b.alive)
       {
         killParticipant(b, a, null);
         elimHappened = true;
       }
+    }
+    else if (roll < 0.38 && a.health < 80)
+    {
+      const ev = randFrom(eventsData.healEvents);
+      const healAmt = randInt(10, 30);
+      const before = a.health;
+      a.health = Math.min(100, a.health + healAmt);
+      const gained = a.health - before;
+      const text = formatText(ev.text, a, b);
+      dayLog.push({ type: 'heal', text: `${text} <em>(+${gained} HP → ${a.health} HP)</em>` });
     }
     else if (roll < 0.45)
     {
@@ -410,6 +438,7 @@ const eventTypeLabel = {
   combat: 'COMBAT',
   'combat forced': 'COMBAT',
   shop: 'SHOP',
+  heal: 'HEAL',
   death: 'ELIMINATED'
 };
 
@@ -439,7 +468,7 @@ function renderLog()
         return;
       }
       const el = document.createElement('div');
-      el.className = `logEntry ${ev.type === 'death' ? 'deathEntry' : ev.type === 'combat' || ev.type === 'combat forced' ? 'combatEntry' : ''}`;
+      el.className = `logEntry ${ev.type === 'death' ? 'deathEntry' : ev.type === 'combat' || ev.type === 'combat forced' ? 'combatEntry' : ev.type === 'heal' ? 'healEntry' : ''}`;
       const tag = eventTypeLabel[ev.type] || 'EVENT';
       const tagClass = ev.type === 'death'
         ? 'deathTag'
@@ -447,7 +476,9 @@ function renderLog()
           ? 'combatTag'
           : ev.type === 'followup'
             ? 'followTag'
-            : 'eventTag';
+            : ev.type === 'heal'
+              ? 'healTag'
+              : 'eventTag';
       el.innerHTML = `<span class="logTag ${tagClass}">${tag}</span>${ev.text}`;
       logEl.appendChild(el);
     });
@@ -544,11 +575,9 @@ function closeWinner()
     el.style.display = 'none';
   }, 300);
 
-  // Disable game controls since the simulation is over
   document.getElementById('nextDayBtn').disabled = true;
   document.getElementById('runEndBtn').disabled = true;
 
-  // Scroll log to bottom so they can read from the end
   const logEl = document.getElementById('eventLog');
   logEl.scrollTop = logEl.scrollHeight;
 }
@@ -590,7 +619,6 @@ document.addEventListener('DOMContentLoaded', async () =>
   document.getElementById('winnerResetBtn').addEventListener('click', resetGame);
   document.getElementById('winnerCloseBtn').addEventListener('click', closeWinner);
 
-  // Also close when clicking the dark backdrop outside the popup card
   document.getElementById('winnerScreen').addEventListener('click', (e) =>
   {
     if (e.target === document.getElementById('winnerScreen'))
