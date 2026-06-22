@@ -86,9 +86,10 @@
     { "id": "r40", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r41", "text": "{A} was simping on {B} and was exiled from the friend group." },
     { "id": "r42", "text": "{A} was simping on {B} and was exiled from the friend group." },
-    { "id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)" },
-    { "id": "r44", "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20", "moneyGain":20, "moneyLoss": 10},
-    { "id": "r45", "text": "{A} restarted the USSR and declared war on PE"}
+    { "id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)." },
+    { "id": "r44", "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20.", "moneyGain":20, "moneyLoss": 20},
+    { "id": "r45", "text": "{A} restarted the USSR and declared war on PE."},
+    { "id": "r46", "text": "{A} found a random duck and named it {B}."}
   ],
   "shopItems": [
     { "id": "ruler", "name": "Ruler", "cost": 5, "tier": "cheap", "damage": 5, "description": "A 30cm weapon of minor annoyance." },
@@ -117,7 +118,7 @@
     { "id": "adminAccess", "name": "Administrative Access", "cost": 100, "tier": "legendary", "damage": 99, "special": "admin", "description": "Root access to the school mainframe." },
     { "id": "blackHoleEraser", "name": "Black Hole Eraser", "cost": 70, "tier": "legendary", "damage": 55, "description": "Erases more than just mistakes." },
     { "id": "timetableOfDoom", "name": "Timetable of Doom", "cost": 65, "tier": "legendary", "damage": 48, "description": "Schedules the opponent for 8am PE every day forever." },
-    { "id": "canteenPie", "name": "Canteen Meat Pie", "cost": 4, "tier": "cheap", "damage": 0, "heal": 15, "consumable": true, "description": "Dubious origins. Restorative nonetheless." },
+    { "id": "canteenPie", "name": "Canteen Meat Pie", "cost": 10, "tier": "cheap", "damage": 0, "heal": 15, "consumable": true, "description": "Dubious origins. Restorative nonetheless." },
     { "id": "energyDrink", "name": "Banned Energy Drink", "cost": 8, "tier": "cheap", "damage": 0, "heal": 25, "consumable": true, "description": "Confiscated from the canteen. Still works." },
     { "id": "nursePass", "name": "Nurse's Hall Pass", "cost": 15, "tier": "mid", "damage": 0, "heal": 40, "consumable": true, "description": "Skip class AND recover HP. Peak resource." },
     { "id": "proteinBar", "name": "Protein Bar", "cost": 10, "tier": "cheap", "damage": 0, "heal": 20, "consumable": true, "description": "Tastes like cardboard. Smells like victory." },
@@ -125,7 +126,7 @@
     { "id": "chocolateMilk", "name": "Chocolate Milk Carton", "cost": 15, "tier": "cheap", "damage": 0, "heal": 10, "consumable": true, "description": "The nectar of primary school gods." },
     { "id": "teachersCoffee", "name": "Teacher's Coffee Mug", "cost": 30, "tier": "mid", "damage": 0, "heal": 60, "consumable": true, "description": "Stolen from the staffroom. Dangerously strong. Fully restores focus." },
     { "id": "mysteryPill", "name": "Nurse's Mystery Pill", "cost": 50, "tier": "legendary", "damage": 0, "heal": 100, "consumable": true, "description": "Nobody knows what it is. It fixes everything." },
-    { "id": "animeGirl", "name": "Anime girl", "cost": 30, "tier": "legendary", "damage": 10, "heal":100, "description": "Why is bro buying waifus, what a weirdo"}
+    { "id": "animeGirl", "name": "Anime girl", "cost": 30, "tier": "legendary", "damage": 10, "heal":100, "description": "Why is bro buying waifus, what a weirdo."}
   ],
   "combatEvents": [
     { "weapon": "ruler", "text": "{A} slaps {B} across the knuckles with a ruler like it's 1952." },
@@ -156,7 +157,7 @@
   ],
   "adminEvents": [
     "{A} uses Administrative Access to delete all of {B}'s grades. They never existed academically.",
-    "{A} extends lunch period to 6 hours using root access. Everyone wins except the teachers.",
+    "{A} found {B}'s search history and posted them onto the school newsletter.",
     "{A} disables gravity in the east wing. {B} does not adapt quickly.",
     "{A} removes {B} from existence using a single DELETE query.",
     "{A} sets {B}'s GPA to negative infinity and logs off.",
@@ -173,7 +174,8 @@
     "{A} creates a portal loop. {B} runs forever.",
     "{A} portals {B} directly into double maths with no context.",
     "{A} opens a portal to the staff car park. {B} lands on the vice principal's car.",
-    "{A} misfires the portal gun and both {A} and {B} end up in the lost property bin."
+    "{A} misfires the portal gun and both {A} and {B} end up in the lost property bin.",
+    "{A} opened a portal to the principal's office and blamed {B} who was scolded very harshly."
   ],
   "deathMessages": [
     "Crushed by a pile of overdue assignments.",
@@ -238,8 +240,8 @@
     "{A} has had enough of {B}'s attitude in the group chat.",
     "{A} challenges {B} to a 1v1 outside the library. No spectators. Only consequences.",
     "{A} ambushes {B} during passing period. A true coward. A true winner.",
-    "{A} sat on {B}. What a fatass",
-    "{A} duelled {B} and aimed for the crotch",
+    "{A} sat on {B}. What a fatass.",
+    "{A} duelled {B} and aimed for the crotch.",
     "{A} throws {B}'s bag onto the roof and then throws {B} up after it.",
     "{A} and {B} have an argument that escalates with terrifying speed.",
     "{A} body-slams {B} in the middle of the canteen queue. The lunch lady sees nothing.",
