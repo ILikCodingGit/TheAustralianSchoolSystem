@@ -324,7 +324,7 @@ function processRelationshipEvent(ev, a, b, dayLog)
     if (!a.enemies) a.enemies = [];
     if (!a.enemies.includes(b.name)) a.enemies.push(b.name);
     a.revengeTarget = b.name;
-    dayLog.push({ type: 'normal', text: `<span class="logTag revengeTag">REJECTED</span> <span class="nameTag">${a.name}</span> now despises <span class="nameTag">${b.name}</span> and has marked them as a target.` });
+    dayLog.push({ type: 'normal', text: `<span class="logTag revengeTag">REJECTED</span> ${formatText(randFrom(eventsData.rejectedMessages), a, b)}` });
   }
   if (ev.id === 'r39')
   {
@@ -332,7 +332,7 @@ function processRelationshipEvent(ev, a, b, dayLog)
     if (!b.allies) b.allies = [];
     if (!a.allies.includes(b.name)) a.allies.push(b.name);
     if (!b.allies.includes(a.name)) b.allies.push(a.name);
-    dayLog.push({ type: 'normal', text: `<span class="logTag acceptTag">ACCEPTED</span> <span class="nameTag">${a.name}</span> and <span class="nameTag">${b.name}</span> are now allies. They will not attack each other. Probably.` });
+    dayLog.push({ type: 'normal', text: `<span class="logTag acceptTag">ACCEPTED</span> ${formatText(randFrom(eventsData.acceptedMessages), a, b)}` });
   }
 }
 
@@ -402,14 +402,14 @@ function generateDayEvents()
       dayLog.push({ type: 'combat', text: `${revengePrefix}${text} (${Math.max(0, damage)} damage)${hpMsg}` });
       if (isBetrayal)
       {
-        dayLog.push({ type: 'normal', text: `<span class="logTag betrayalTag">BETRAYAL</span> <span class="nameTag">${a.name}</span> stabbed their former ally <span class="nameTag">${b.name}</span> in the back. The alliance is over.` });
+        dayLog.push({ type: 'normal', text: `<span class="logTag betrayalTag">BETRAYAL</span> ${formatText(randFrom(eventsData.betrayalMessages), a, b)}` });
       }
 
       if (b.health <= 0 && b.alive)
       {
         killParticipant(b, a, null);
         elimHappened = true;
-        dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${b.name}</span> was eliminated by <span class="nameTag">${a.name}</span>.` });
+        dayLog.push({ type: 'death', text: formatText(randFrom(eventsData.killMessages), a, b) });
       }
     }
     else
@@ -472,8 +472,8 @@ function generateDayEvents()
           b.money = Math.max(0, b.money - ev.moneyLoss);
           text += ` (${b.name} -$${ev.moneyLoss})`;
         }
-        processRelationshipEvent(ev, a, b, dayLog);
         dayLog.push({ type: 'random', text });
+        processRelationshipEvent(ev, a, b, dayLog);
       }
     }
   }
@@ -502,7 +502,7 @@ function generateDayEvents()
       if (prey.health <= 0 && prey.alive)
       {
         killParticipant(prey, hunter, null);
-        dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${prey.name}</span> was eliminated by <span class="nameTag">${hunter.name}</span>.` });
+        dayLog.push({ type: 'death', text: formatText(randFrom(eventsData.killMessages), hunter, prey) });
       }
     }
   }
@@ -519,13 +519,7 @@ function generateDayEvents()
         if (!pb.allies) pb.allies = [];
         pa.allies.push(pb.name);
         pb.allies.push(pa.name);
-        const friendshipLines = [
-          `<span class="nameTag">${pa.name}</span> and <span class="nameTag">${pb.name}</span> agree to have each other's backs. For now.`,
-          `<span class="nameTag">${pa.name}</span> and <span class="nameTag">${pb.name}</span> form an uneasy alliance over shared hatred of the cafeteria menu.`,
-          `<span class="nameTag">${pa.name}</span> saves <span class="nameTag">${pb.name}</span>'s seat. A pact is forged.`,
-          `<span class="nameTag">${pa.name}</span> and <span class="nameTag">${pb.name}</span> are spotted walking to class together. Alliance confirmed.`
-        ];
-        dayLog.push({ type: 'normal', text: randFrom(friendshipLines) });
+        dayLog.push({ type: 'normal', text: formatText(randFrom(eventsData.allianceMessages), pa, pb) });
       }
     }
   }

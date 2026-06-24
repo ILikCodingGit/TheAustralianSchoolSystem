@@ -1,816 +1,166 @@
 {
   "normalEvents": [
-    {
-      "id": "n1",
-      "text": "{A} forgot their homework and blamed the printer.",
-      "setFlag": "officeVeteran"
-    },
-    {
-      "id": "n2",
-      "text": "{A} started a group project and did 0% of it."
-    },
-    {
-      "id": "n3",
-      "text": "{A} got sent to the office for being disruptive.",
-      "setFlag": "officeVeteran"
-    },
-    {
-      "id": "n4",
-      "text": "{A} found forbidden cafeteria food.",
-      "setFlag": "foundForbiddenFood"
-    },
-    {
-      "id": "n5",
-      "text": "{A} challenged {B} to a hallway race, tripping over their own backpack."
-    },
-    {
-      "id": "n6",
-      "text": "{A} accused {B} of copying homework. {B} was definitely copying."
-    },
-    {
-      "id": "n7",
-      "text": "{A} became class president by promising longer lunch.",
-      "setFlag": "classPresident"
-    },
-    {
-      "id": "n8",
-      "text": "{A} joined a mysterious after-school club.",
-      "setFlag": "clubMember"
-    },
-    {
-      "id": "n9",
-      "text": "{A} got caught using ChatGPT for an essay. The essay was about why AI is dangerous."
-    },
-    {
-      "id": "n10",
-      "text": "{A} gave a presentation with exactly 1 slide. It just said 'trust me bro'."
-    },
-    {
-      "id": "n11",
-      "text": "{A} tried to sneak out of class through the ceiling tiles."
-    },
-    {
-      "id": "n12",
-      "text": "{A} convinced {B} that the water fountain has healing properties."
-    },
-    {
-      "id": "n13",
-      "text": "{A} submitted a blank test with their name written very confidently."
-    },
-    {
-      "id": "n14",
-      "text": "{A} started a petition to replace math with vibes."
-    },
-    {
-      "id": "n15",
-      "text": "{A} ate {B}'s lunch and felt no remorse."
-    },
-    {
-      "id": "n16",
-      "text": "{A} raised their hand to ask a question that was literally just answered."
-    },
-    {
-      "id": "n17",
-      "text": "{A} printed their homework in size 16 font to meet the page requirement."
-    },
-    {
-      "id": "n18",
-      "text": "{A} was caught texting in class. The teacher read it aloud. It was about the teacher."
-    },
-    {
-      "id": "n19",
-      "text": "{A} asked to go to the nurse and returned three periods later looking refreshed."
-    },
-    {
-      "id": "n20",
-      "text": "{A} snitched on {B} for no reason other than pure instinct.",
-      "setFlag": "officeVeteran"
-    },
-    {
-      "id": "n21",
-      "text": "{A} fell asleep in class and woke up in a different subject."
-    },
-    {
-      "id": "n22",
-      "text": "{A} brought an emotional support energy drink to school and got it confiscated."
-    },
-    {
-      "id": "n23",
-      "text": "{A} called the teacher 'mum' and has not recovered."
-    },
-    {
-      "id": "n24",
-      "text": "{A} lost their phone for a week after it went off during a fire drill."
-    },
-    {
-      "id": "n25",
-      "text": "{A} rewrote the school anthem to be about themselves.",
-      "setFlag": "classPresident"
-    },
-    {
-      "id": "n26",
-      "text": "{A} claimed {B}'s science experiment as their own. It exploded anyway."
-    },
-    {
-      "id": "n27",
-      "text": "{A} organised a walkout but only they showed up."
-    },
-    {
-      "id": "n28",
-      "text": "{A} discovered the substitute teacher is actually a student in a coat."
-    },
-    {
-      "id": "n29",
-      "text": "{A} spent all of maths drawing a highly detailed portrait of {B}."
-    },
-    {
-      "id": "n30",
-      "text": "{A} joined drama club purely to escape an exam.",
-      "setFlag": "clubMember"
-    }
+    {"id": "n1", "text": "{A} forgot their homework and blamed the printer.", "setFlag": "officeVeteran"},
+    {"id": "n2", "text": "{A} started a group project and did 0% of it."},
+    {"id": "n3", "text": "{A} got sent to the office for being disruptive.", "setFlag": "officeVeteran"},
+    {"id": "n4", "text": "{A} found forbidden cafeteria food.", "setFlag": "foundForbiddenFood"},
+    {"id": "n5", "text": "{A} challenged {B} to a hallway race, tripping over their own backpack."},
+    {"id": "n6", "text": "{A} accused {B} of copying homework. {B} was definitely copying."},
+    {"id": "n7", "text": "{A} became class president by promising longer lunch.", "setFlag": "classPresident"},
+    {"id": "n8", "text": "{A} joined a mysterious after-school club.", "setFlag": "clubMember"},
+    {"id": "n9", "text": "{A} got caught using ChatGPT for an essay. The essay was about why AI is dangerous."},
+    {"id": "n10", "text": "{A} gave a presentation with exactly 1 slide. It just said 'trust me bro'."},
+    {"id": "n11", "text": "{A} tried to sneak out of class through the ceiling tiles."},
+    {"id": "n12", "text": "{A} convinced {B} that the water fountain has healing properties."},
+    {"id": "n13", "text": "{A} submitted a blank test with their name written very confidently."},
+    {"id": "n14", "text": "{A} started a petition to replace math with vibes."},
+    {"id": "n15", "text": "{A} ate {B}'s lunch and felt no remorse."},
+    {"id": "n16", "text": "{A} raised their hand to ask a question that was literally just answered."},
+    {"id": "n17", "text": "{A} printed their homework in size 16 font to meet the page requirement."},
+    {"id": "n18", "text": "{A} was caught texting in class. The teacher read it aloud. It was about the teacher."},
+    {"id": "n19", "text": "{A} asked to go to the nurse and returned three periods later looking refreshed."},
+    {"id": "n20", "text": "{A} snitched on {B} for no reason other than pure instinct.", "setFlag": "officeVeteran"},
+    {"id": "n21", "text": "{A} fell asleep in class and woke up in a different subject."},
+    {"id": "n22", "text": "{A} brought an emotional support energy drink to school and got it confiscated."},
+    {"id": "n23", "text": "{A} called the teacher 'mum' and has not recovered."},
+    {"id": "n24", "text": "{A} lost their phone for a week after it went off during a fire drill."},
+    {"id": "n25", "text": "{A} rewrote the school anthem to be about themselves.", "setFlag": "classPresident"},
+    {"id": "n26", "text": "{A} claimed {B}'s science experiment as their own. It exploded anyway."},
+    {"id": "n27", "text": "{A} organised a walkout but only they showed up."},
+    {"id": "n28", "text": "{A} discovered the substitute teacher is actually a student in a coat."},
+    {"id": "n29", "text": "{A} spent all of maths drawing a highly detailed portrait of {B}."},
+    {"id": "n30", "text": "{A} joined drama club purely to escape an exam.", "setFlag": "clubMember"}
   ],
   "followUpEvents": [
-    {
-      "id": "f1",
-      "requireFlag": "classPresident",
-      "text": "{A} abuses presidential power and bans all homework. The teachers weep.",
-      "moneyGain": 20
-    },
-    {
-      "id": "f2",
-      "requireFlag": "foundForbiddenFood",
-      "text": "{A} builds a black market lunch empire out of contraband pizza rolls.",
-      "moneyGain": 35
-    },
-    {
-      "id": "f3",
-      "requireFlag": "clubMember",
-      "text": "{A} returns from the mysterious club more powerful than before. Nobody asks questions.",
-      "healthGain": 15
-    },
-    {
-      "id": "f4",
-      "requireFlag": "officeVeteran",
-      "text": "{A} returns from the office with forbidden knowledge of the school's secrets.",
-      "setFlag": "hasSecrets"
-    },
-    {
-      "id": "f5",
-      "requireFlag": "hasSecrets",
-      "text": "{A} leaks the secrets to the school newspaper. Chaos reigns.",
-      "moneyGain": 50
-    },
-    {
-      "id": "f6",
-      "requireFlag": "classPresident",
-      "text": "{A} installs a vending machine in the principal's office using executive privilege.",
-      "moneyGain": 30
-    },
-    {
-      "id": "f7",
-      "requireFlag": "foundForbiddenFood",
-      "text": "{A} discovers the forbidden food grants temporary invincibility. Probably.",
-      "healthGain": 25
-    },
-    {
-      "id": "f8",
-      "requireFlag": "clubMember",
-      "text": "{A} reveals the mysterious club was a stock trading ring. They are rich now.",
-      "moneyGain": 45
-    },
-    {
-      "id": "f9",
-      "requireFlag": "hasSecrets",
-      "text": "{A} blackmails the vice principal with the secrets. Tastefully.",
-      "moneyGain": 60
-    },
-    {
-      "id": "f10",
-      "requireFlag": "officeVeteran",
-      "text": "{A} has spent so much time in the office they now have their own chair.",
-      "healthGain": 10
-    }
+    {"id": "f1", "requireFlag": "classPresident", "text": "{A} abuses presidential power and bans all homework. The teachers weep.", "moneyGain": 20},
+    {"id": "f2", "requireFlag": "foundForbiddenFood", "text": "{A} builds a black market lunch empire out of contraband pizza rolls.", "moneyGain": 35},
+    {"id": "f3", "requireFlag": "clubMember", "text": "{A} returns from the mysterious club more powerful than before. Nobody asks questions.", "healthGain": 15},
+    {"id": "f4", "requireFlag": "officeVeteran", "text": "{A} returns from the office with forbidden knowledge of the school's secrets.", "setFlag": "hasSecrets"},
+    {"id": "f5", "requireFlag": "hasSecrets", "text": "{A} leaks the secrets to the school newspaper. Chaos reigns.", "moneyGain": 50},
+    {"id": "f6", "requireFlag": "classPresident", "text": "{A} installs a vending machine in the principal's office using executive privilege.", "moneyGain": 30},
+    {"id": "f7", "requireFlag": "foundForbiddenFood", "text": "{A} discovers the forbidden food grants temporary invincibility. Probably.", "healthGain": 25},
+    {"id": "f8", "requireFlag": "clubMember", "text": "{A} reveals the mysterious club was a stock trading ring. They are rich now.", "moneyGain": 45},
+    {"id": "f9", "requireFlag": "hasSecrets", "text": "{A} blackmails the vice principal with the secrets. Tastefully.", "moneyGain": 60},
+    {"id": "f10", "requireFlag": "officeVeteran", "text": "{A} has spent so much time in the office they now have their own chair.", "healthGain": 10}
   ],
   "randomEvents": [
-    {
-      "id": "r1",
-      "text": "{A} found $2 under a desk.",
-      "moneyGain": 2
-    },
-    {
-      "id": "r2",
-      "text": "{A} became the hallway NPC, giving the same vague directions to everyone."
-    },
-    {
-      "id": "r3",
-      "text": "{A} started a cult around a calculator. It only displays 69."
-    },
-    {
-      "id": "r4",
-      "text": "{A} built a pencil crossbow during study hall.",
-      "setFlag": "hasWeapon"
-    },
-    {
-      "id": "r5",
-      "text": "{A} forgot what class they were in and attended chemistry instead of gym."
-    },
-    {
-      "id": "r6",
-      "text": "{A} found the source code of the school system and stared into the abyss."
-    },
-    {
-      "id": "r7",
-      "text": "{A} made eye contact with the substitute teacher and immediately regretted it."
-    },
-    {
-      "id": "r8",
-      "text": "{A} tried to sell homework answers for $5 each.",
-      "moneyGain": 15
-    },
-    {
-      "id": "r9",
-      "text": "{A} launched a pyramid scheme involving cafeteria loyalty cards.",
-      "moneyGain": 25
-    },
-    {
-      "id": "r10",
-      "text": "{A} became a tutor for subjects they haven't taken yet.",
-      "moneyGain": 20
-    },
-    {
-      "id": "r11",
-      "text": "{A} convinced {B} to invest in their NFT collection of badly drawn fish.",
-      "moneyGain": 30,
-      "moneyLoss": 30,
-      "target": "B"
-    },
-    {
-      "id": "r12",
-      "text": "{A} accidentally started a food fight and watched from a safe distance."
-    },
-    {
-      "id": "r13",
-      "text": "{A} ran for hall monitor solely for the power."
-    },
-    {
-      "id": "r14",
-      "text": "{A} discovered a vending machine glitch and exploited it mercilessly.",
-      "moneyGain": 10
-    },
-    {
-      "id": "r15",
-      "text": "{A} turned in someone else's essay from 2003. Got a B+."
-    },
-    {
-      "id": "r16",
-      "text": "{A} spent three hours in the bathroom to avoid a test."
-    },
-    {
-      "id": "r17",
-      "text": "{A} organized a betting pool on the spelling bee.",
-      "moneyGain": 20
-    },
-    {
-      "id": "r18",
-      "text": "{A} attempted to domesticate the school pigeons."
-    },
-    {
-      "id": "r19",
-      "text": "{A} brought a microwave to school and charged students $1 per use.",
-      "moneyGain": 18
-    },
-    {
-      "id": "r20",
-      "text": "{A} discovered the teachers' lounge and emerged changed."
-    },
-    {
-      "id": "r21",
-      "text": "{A} found an unmarked key and has been trying doors all week.",
-      "moneyGain": 5
-    },
-    {
-      "id": "r22",
-      "text": "{A} set their ringtone to the school bell and caused a mass exodus from maths."
-    },
-    {
-      "id": "r23",
-      "text": "{A} sold 'premium air' from outside the school in labelled zip-lock bags.",
-      "moneyGain": 12
-    },
-    {
-      "id": "r24",
-      "text": "{A} convinced {B} to carry their bag all day by claiming a wrist injury.",
-      "moneyGain": 8,
-      "moneyLoss": 0
-    },
-    {
-      "id": "r25",
-      "text": "{A} found $20 in a library book from 1987.",
-      "moneyGain": 20
-    },
-    {
-      "id": "r26",
-      "text": "{A} ran an underground tuck shop out of their locker.",
-      "moneyGain": 22
-    },
-    {
-      "id": "r27",
-      "text": "{A} forged a doctor's note so convincingly the nurse framed it."
-    },
-    {
-      "id": "r28",
-      "text": "{A} claimed to be an exchange student for three weeks. Nobody questioned it."
-    },
-    {
-      "id": "r29",
-      "text": "{A} accidentally joined the robotics team. The robot now answers to {A}."
-    },
-    {
-      "id": "r30",
-      "text": "{A} bet {B} $10 they couldn't stay silent for a whole period. {B} failed immediately.",
-      "moneyGain": 10,
-      "moneyLoss": 10
-    },
-    {
-      "id": "r31",
-      "text": "{A} started a rumour about a secret underground level beneath the gym. Three students are still looking."
-    },
-    {
-      "id": "r32",
-      "text": "{A} somehow got on the morning announcements and read their manifesto."
-    },
-    {
-      "id": "r33",
-      "text": "{A} renamed every textbook in their bag after an anime character."
-    },
-    {
-      "id": "r34",
-      "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)"
-    },
-    {
-      "id": "r35",
-      "text": "{A} was simping on {B} and was exiled from the friend group."
-    },
-    {
-      "id": "r36",
-      "text": "{A} found a wallet on the floor and forgot it on the bus."
-    },
-    {
-      "id": "r37",
-      "text": "{A} found a wallet on the bus.",
-      "moneyGain": 50
-    },
-    {
-      "id": "r38",
-      "text": "{A} confessed their love to {B} and was rejected so bad even the teachers felt bad"
-    },
-    {
-      "id": "r39",
-      "text": "{A} confessed their love to {B} and somehow succeeded"
-    },
-    {
-      "id": "r40",
-      "text": "{A} was simping on {B} and was exiled from the friend group."
-    },
-    {
-      "id": "r41",
-      "text": "{A} was simping on {B} and was exiled from the friend group."
-    },
-    {
-      "id": "r42",
-      "text": "{A} was simping on {B} and was exiled from the friend group."
-    },
-    {
-      "id": "r43",
-      "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)."
-    },
-    {
-      "id": "r44",
-      "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20.",
-      "moneyGain": 20,
-      "moneyLoss": 20
-    },
-    {
-      "id": "r45",
-      "text": "{A} restarted the USSR and declared war on PE."
-    },
-    {
-      "id": "r46",
-      "text": "{A} found a random duck and named it {B}."
-    }
+    {"id": "r1", "text": "{A} found $2 under a desk.", "moneyGain": 2},
+    {"id": "r2", "text": "{A} became the hallway NPC, giving the same vague directions to everyone."},
+    {"id": "r3", "text": "{A} started a cult around a calculator. It only displays 69."},
+    {"id": "r4", "text": "{A} built a pencil crossbow during study hall.", "setFlag": "hasWeapon"},
+    {"id": "r5", "text": "{A} forgot what class they were in and attended chemistry instead of gym."},
+    {"id": "r6", "text": "{A} found the source code of the school system and stared into the abyss."},
+    {"id": "r7", "text": "{A} made eye contact with the substitute teacher and immediately regretted it."},
+    {"id": "r8", "text": "{A} tried to sell homework answers for $5 each.", "moneyGain": 15},
+    {"id": "r9", "text": "{A} launched a pyramid scheme involving cafeteria loyalty cards.", "moneyGain": 25},
+    {"id": "r10", "text": "{A} became a tutor for subjects they haven't taken yet.", "moneyGain": 20},
+    {"id": "r11", "text": "{A} convinced {B} to invest in their NFT collection of badly drawn fish.", "moneyGain": 30, "moneyLoss": 30, "target": "B"},
+    {"id": "r12", "text": "{A} accidentally started a food fight and watched from a safe distance."},
+    {"id": "r13", "text": "{A} ran for hall monitor solely for the power."},
+    {"id": "r14", "text": "{A} discovered a vending machine glitch and exploited it mercilessly.", "moneyGain": 10},
+    {"id": "r15", "text": "{A} turned in someone else's essay from 2003. Got a B+."},
+    {"id": "r16", "text": "{A} spent three hours in the bathroom to avoid a test."},
+    {"id": "r17", "text": "{A} organized a betting pool on the spelling bee.", "moneyGain": 20},
+    {"id": "r18", "text": "{A} attempted to domesticate the school pigeons."},
+    {"id": "r19", "text": "{A} brought a microwave to school and charged students $1 per use.", "moneyGain": 18},
+    {"id": "r20", "text": "{A} discovered the teachers' lounge and emerged changed."},
+    {"id": "r21", "text": "{A} found an unmarked key and has been trying doors all week.", "moneyGain": 5},
+    {"id": "r22", "text": "{A} set their ringtone to the school bell and caused a mass exodus from maths."},
+    {"id": "r23", "text": "{A} sold 'premium air' from outside the school in labelled zip-lock bags.", "moneyGain": 12},
+    {"id": "r24", "text": "{A} convinced {B} to carry their bag all day by claiming a wrist injury.", "moneyGain": 8, "moneyLoss": 0},
+    {"id": "r25", "text": "{A} found $20 in a library book from 1987.", "moneyGain": 20},
+    {"id": "r26", "text": "{A} ran an underground tuck shop out of their locker.", "moneyGain": 22},
+    {"id": "r27", "text": "{A} forged a doctor's note so convincingly the nurse framed it."},
+    {"id": "r28", "text": "{A} claimed to be an exchange student for three weeks. Nobody questioned it."},
+    {"id": "r29", "text": "{A} accidentally joined the robotics team. The robot now answers to {A}."},
+    {"id": "r30", "text": "{A} bet {B} $10 they couldn't stay silent for a whole period. {B} failed immediately.", "moneyGain": 10, "moneyLoss": 10},
+    {"id": "r31", "text": "{A} started a rumour about a secret underground level beneath the gym. Three students are still looking."},
+    {"id": "r32", "text": "{A} somehow got on the morning announcements and read their manifesto."},
+    {"id": "r33", "text": "{A} renamed every textbook in their bag after an anime character."},
+    {"id": "r34", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)"},
+    {"id": "r35", "text": "{A} was simping on {B} and was exiled from the friend group."},
+    {"id": "r36", "text": "{A} found a wallet on the floor and forgot it on the bus."},
+    {"id": "r37", "text": "{A} found a wallet on the bus.", "moneyGain": 50},
+    {"id": "r38", "text": "{A} confessed their love to {B} and was rejected so bad even the teachers felt bad"},
+    {"id": "r39", "text": "{A} confessed their love to {B} and somehow succeeded"},
+    {"id": "r40", "text": "{A} was simping on {B} and was exiled from the friend group."},
+    {"id": "r41", "text": "{A} was simping on {B} and was exiled from the friend group."},
+    {"id": "r42", "text": "{A} was simping on {B} and was exiled from the friend group."},
+    {"id": "r43", "text": "{A} was caught on vegetable r34 (yeah pudding, hop off)."},
+    {"id": "r44", "text": "{A} demanded rights and was rejected. {B} felt bad and gave them $20.", "moneyGain": 20, "moneyLoss": 20},
+    {"id": "r45", "text": "{A} restarted the USSR and declared war on PE."},
+    {"id": "r46", "text": "{A} found a random duck and named it {B}."}
   ],
   "shopItems": [
-    {
-      "id": "ruler",
-      "name": "Ruler",
-      "cost": 5,
-      "tier": "cheap",
-      "damage": 5,
-      "description": "A 30cm weapon of minor annoyance."
-    },
-    {
-      "id": "stapler",
-      "name": "Stapler",
-      "cost": 8,
-      "tier": "cheap",
-      "damage": 15,
-      "description": "Industrial grade. Do not aim at face."
-    },
-    {
-      "id": "nerfGun",
-      "name": "Nerf Gun",
-      "cost": 12,
-      "tier": "cheap",
-      "damage": 10,
-      "description": "Technically harmless. Technically."
-    },
-    {
-      "id": "permanentMarker",
-      "name": "Permanent Marker",
-      "cost": 6,
-      "tier": "cheap",
-      "damage": 8,
-      "description": "The scars are psychological."
-    },
-    {
-      "id": "toyLightsaber",
-      "name": "Toy Lightsaber",
-      "cost": 10,
-      "tier": "cheap",
-      "damage": 12,
-      "description": "Makes woosh sounds on impact."
-    },
-    {
-      "id": "brokenCalc",
-      "name": "Calculator That Only Shows 7",
-      "cost": 7,
-      "tier": "cheap",
-      "damage": 6,
-      "description": "7. Always 7. Why is it always 7."
-    },
-    {
-      "id": "wetFloorSign",
-      "name": "Wet Floor Sign",
-      "cost": 9,
-      "tier": "cheap",
-      "damage": 9,
-      "description": "A warning and a weapon simultaneously."
-    },
-    {
-      "id": "recorderFlute",
-      "name": "Recorder Flute",
-      "cost": 4,
-      "tier": "cheap",
-      "damage": 7,
-      "description": "The sound alone deals 5 psychic damage."
-    },
-    {
-      "id": "compassPoint",
-      "name": "Maths Compass",
-      "cost": 6,
-      "tier": "cheap",
-      "damage": 11,
-      "description": "Pointy end first. Always."
-    },
-    {
-      "id": "drone",
-      "name": "Drone",
-      "cost": 25,
-      "tier": "mid",
-      "damage": 22,
-      "description": "Equipped with a stapler attachment."
-    },
-    {
-      "id": "shoppingCart",
-      "name": "Shopping Cart",
-      "cost": 20,
-      "tier": "mid",
-      "damage": 18,
-      "description": "Aerodynamic when aimed downhill."
-    },
-    {
-      "id": "skateboard",
-      "name": "Skateboard",
-      "cost": 22,
-      "tier": "mid",
-      "damage": 20,
-      "description": "A vehicle and a projectile."
-    },
-    {
-      "id": "cardboardArmor",
-      "name": "Cardboard Armor",
-      "cost": 18,
-      "tier": "mid",
-      "damage": 0,
-      "defense": 10,
-      "description": "Rated 3 stars on Amazon."
-    },
-    {
-      "id": "gamingLaptop",
-      "name": "Gaming Laptop",
-      "cost": 30,
-      "tier": "mid",
-      "damage": 25,
-      "description": "Heavy. Very heavy."
-    },
-    {
-      "id": "petGoose",
-      "name": "Pet Goose",
-      "cost": 28,
-      "tier": "mid",
-      "damage": 30,
-      "description": "Chaotic neutral. Hates everyone equally."
-    },
-    {
-      "id": "hallMonitorBadge",
-      "name": "Hall Monitor Badge",
-      "cost": 15,
-      "tier": "mid",
-      "damage": 0,
-      "defense": 15,
-      "description": "People actively avoid you. Useful."
-    },
-    {
-      "id": "deskChair",
-      "name": "Wheely Chair",
-      "cost": 20,
-      "tier": "mid",
-      "damage": 16,
-      "description": "Doubles as a getaway vehicle."
-    },
-    {
-      "id": "fireExtinguisher",
-      "name": "Fire Extinguisher",
-      "cost": 24,
-      "tier": "mid",
-      "damage": 21,
-      "description": "Aim. Spray. Flee."
-    },
-    {
-      "id": "trebuchet",
-      "name": "Trebuchet",
-      "cost": 60,
-      "tier": "legendary",
-      "damage": 40,
-      "description": "The superior siege weapon. No contest."
-    },
-    {
-      "id": "tank",
-      "name": "Tank",
-      "cost": 80,
-      "tier": "legendary",
-      "damage": 75,
-      "description": "Somehow fits in the hallway."
-    },
-    {
-      "id": "pirateShip",
-      "name": "Pirate Ship",
-      "cost": 75,
-      "tier": "legendary",
-      "damage": 50,
-      "description": "Parked in the gym pool."
-    },
-    {
-      "id": "mechSuit",
-      "name": "Mech Suit",
-      "cost": 90,
-      "tier": "legendary",
-      "damage": 60,
-      "defense": 20,
-      "description": "Assembled from STEM class scraps."
-    },
-    {
-      "id": "portalGun",
-      "name": "Portal Gun",
-      "cost": 70,
-      "tier": "legendary",
-      "damage": 45,
-      "special": "portal",
-      "description": "Results may vary. Void where prohibited."
-    },
-    {
-      "id": "adminAccess",
-      "name": "Administrative Access",
-      "cost": 100,
-      "tier": "legendary",
-      "damage": 99,
-      "special": "admin",
-      "description": "Root access to the school mainframe."
-    },
-    {
-      "id": "blackHoleEraser",
-      "name": "Black Hole Eraser",
-      "cost": 70,
-      "tier": "legendary",
-      "damage": 55,
-      "description": "Erases more than just mistakes."
-    },
-    {
-      "id": "timetableOfDoom",
-      "name": "Timetable of Doom",
-      "cost": 65,
-      "tier": "legendary",
-      "damage": 48,
-      "description": "Schedules the opponent for 8am PE every day forever."
-    },
-    {
-      "id": "canteenPie",
-      "name": "Canteen Meat Pie",
-      "cost": 10,
-      "tier": "cheap",
-      "damage": 0,
-      "heal": 8,
-      "consumable": true,
-      "description": "Dubious origins. Restorative nonetheless."
-    },
-    {
-      "id": "energyDrink",
-      "name": "Banned Energy Drink",
-      "cost": 8,
-      "tier": "cheap",
-      "damage": 0,
-      "heal": 12,
-      "consumable": true,
-      "description": "Confiscated from the canteen. Still works."
-    },
-    {
-      "id": "nursePass",
-      "name": "Nurse's Hall Pass",
-      "cost": 15,
-      "tier": "mid",
-      "damage": 0,
-      "heal": 20,
-      "consumable": true,
-      "description": "Skip class AND recover HP. Peak resource."
-    },
-    {
-      "id": "proteinBar",
-      "name": "Protein Bar",
-      "cost": 10,
-      "tier": "cheap",
-      "damage": 0,
-      "heal": 10,
-      "consumable": true,
-      "description": "Tastes like cardboard. Smells like victory."
-    },
-    {
-      "id": "firstAidKit",
-      "name": "First Aid Kit",
-      "cost": 50,
-      "tier": "mid",
-      "damage": 0,
-      "heal": 30,
-      "consumable": true,
-      "description": "Stolen from the sports shed. Fully stocked."
-    },
-    {
-      "id": "chocolateMilk",
-      "name": "Chocolate Milk Carton",
-      "cost": 15,
-      "tier": "cheap",
-      "damage": 0,
-      "heal": 6,
-      "consumable": true,
-      "description": "The nectar of primary school gods."
-    },
-    {
-      "id": "teachersCoffee",
-      "name": "Teacher's Coffee Mug",
-      "cost": 30,
-      "tier": "mid",
-      "damage": 0,
-      "heal": 35,
-      "consumable": true,
-      "description": "Stolen from the staffroom. Dangerously strong. Fully restores focus."
-    },
-    {
-      "id": "mysteryPill",
-      "name": "Nurse's Mystery Pill",
-      "cost": 50,
-      "tier": "legendary",
-      "damage": 0,
-      "heal": 60,
-      "consumable": true,
-      "description": "Nobody knows what it is. It fixes everything."
-    },
-    {
-      "id": "animeGirl",
-      "name": "Anime girl",
-      "cost": 30,
-      "tier": "legendary",
-      "damage": 10,
-      "heal": 50,
-      "description": "Why is bro buying waifus, what a weirdo."
-    }
+    {"id": "ruler", "name": "Ruler", "cost": 5, "tier": "cheap", "damage": 5, "description": "A 30cm weapon of minor annoyance."},
+    {"id": "stapler", "name": "Stapler", "cost": 8, "tier": "cheap", "damage": 15, "description": "Industrial grade. Do not aim at face."},
+    {"id": "nerfGun", "name": "Nerf Gun", "cost": 12, "tier": "cheap", "damage": 10, "description": "Technically harmless. Technically."},
+    {"id": "permanentMarker", "name": "Permanent Marker", "cost": 6, "tier": "cheap", "damage": 8, "description": "The scars are psychological."},
+    {"id": "toyLightsaber", "name": "Toy Lightsaber", "cost": 10, "tier": "cheap", "damage": 12, "description": "Makes woosh sounds on impact."},
+    {"id": "brokenCalc", "name": "Calculator That Only Shows 7", "cost": 7, "tier": "cheap", "damage": 6, "description": "7. Always 7. Why is it always 7."},
+    {"id": "wetFloorSign", "name": "Wet Floor Sign", "cost": 9, "tier": "cheap", "damage": 9, "description": "A warning and a weapon simultaneously."},
+    {"id": "recorderFlute", "name": "Recorder Flute", "cost": 4, "tier": "cheap", "damage": 7, "description": "The sound alone deals 5 psychic damage."},
+    {"id": "compassPoint", "name": "Maths Compass", "cost": 6, "tier": "cheap", "damage": 11, "description": "Pointy end first. Always."},
+    {"id": "drone", "name": "Drone", "cost": 25, "tier": "mid", "damage": 22, "description": "Equipped with a stapler attachment."},
+    {"id": "shoppingCart", "name": "Shopping Cart", "cost": 20, "tier": "mid", "damage": 18, "description": "Aerodynamic when aimed downhill."},
+    {"id": "skateboard", "name": "Skateboard", "cost": 22, "tier": "mid", "damage": 20, "description": "A vehicle and a projectile."},
+    {"id": "cardboardArmor", "name": "Cardboard Armor", "cost": 18, "tier": "mid", "damage": 0, "defense": 10, "description": "Rated 3 stars on Amazon."},
+    {"id": "gamingLaptop", "name": "Gaming Laptop", "cost": 30, "tier": "mid", "damage": 25, "description": "Heavy. Very heavy."},
+    {"id": "petGoose", "name": "Pet Goose", "cost": 28, "tier": "mid", "damage": 30, "description": "Chaotic neutral. Hates everyone equally."},
+    {"id": "hallMonitorBadge", "name": "Hall Monitor Badge", "cost": 15, "tier": "mid", "damage": 0, "defense": 15, "description": "People actively avoid you. Useful."},
+    {"id": "deskChair", "name": "Wheely Chair", "cost": 20, "tier": "mid", "damage": 16, "description": "Doubles as a getaway vehicle."},
+    {"id": "fireExtinguisher", "name": "Fire Extinguisher", "cost": 24, "tier": "mid", "damage": 21, "description": "Aim. Spray. Flee."},
+    {"id": "trebuchet", "name": "Trebuchet", "cost": 60, "tier": "legendary", "damage": 40, "description": "The superior siege weapon. No contest."},
+    {"id": "tank", "name": "Tank", "cost": 80, "tier": "legendary", "damage": 75, "description": "Somehow fits in the hallway."},
+    {"id": "pirateShip", "name": "Pirate Ship", "cost": 75, "tier": "legendary", "damage": 50, "description": "Parked in the gym pool."},
+    {"id": "mechSuit", "name": "Mech Suit", "cost": 90, "tier": "legendary", "damage": 60, "defense": 20, "description": "Assembled from STEM class scraps."},
+    {"id": "portalGun", "name": "Portal Gun", "cost": 70, "tier": "legendary", "damage": 45, "special": "portal", "description": "Results may vary. Void where prohibited."},
+    {"id": "adminAccess", "name": "Administrative Access", "cost": 100, "tier": "legendary", "damage": 99, "special": "admin", "description": "Root access to the school mainframe."},
+    {"id": "blackHoleEraser", "name": "Black Hole Eraser", "cost": 70, "tier": "legendary", "damage": 55, "description": "Erases more than just mistakes."},
+    {"id": "timetableOfDoom", "name": "Timetable of Doom", "cost": 65, "tier": "legendary", "damage": 48, "description": "Schedules the opponent for 8am PE every day forever."},
+    {"id": "canteenPie", "name": "Canteen Meat Pie", "cost": 10, "tier": "cheap", "damage": 0, "heal": 8, "consumable": true, "description": "Dubious origins. Restorative nonetheless."},
+    {"id": "energyDrink", "name": "Banned Energy Drink", "cost": 8, "tier": "cheap", "damage": 0, "heal": 12, "consumable": true, "description": "Confiscated from the canteen. Still works."},
+    {"id": "nursePass", "name": "Nurse's Hall Pass", "cost": 15, "tier": "mid", "damage": 0, "heal": 20, "consumable": true, "description": "Skip class AND recover HP. Peak resource."},
+    {"id": "proteinBar", "name": "Protein Bar", "cost": 10, "tier": "cheap", "damage": 0, "heal": 10, "consumable": true, "description": "Tastes like cardboard. Smells like victory."},
+    {"id": "firstAidKit", "name": "First Aid Kit", "cost": 50, "tier": "mid", "damage": 0, "heal": 30, "consumable": true, "description": "Stolen from the sports shed. Fully stocked."},
+    {"id": "chocolateMilk", "name": "Chocolate Milk Carton", "cost": 15, "tier": "cheap", "damage": 0, "heal": 6, "consumable": true, "description": "The nectar of primary school gods."},
+    {"id": "teachersCoffee", "name": "Teacher's Coffee Mug", "cost": 30, "tier": "mid", "damage": 0, "heal": 35, "consumable": true, "description": "Stolen from the staffroom. Dangerously strong. Fully restores focus."},
+    {"id": "mysteryPill", "name": "Nurse's Mystery Pill", "cost": 50, "tier": "legendary", "damage": 0, "heal": 60, "consumable": true, "description": "Nobody knows what it is. It fixes everything."},
+    {"id": "animeGirl", "name": "Anime girl", "cost": 30, "tier": "legendary", "damage": 10, "heal": 50, "description": "Why is bro buying waifus, what a weirdo."}
   ],
   "combatEvents": [
-    {
-      "weapon": "ruler",
-      "text": "{A} slaps {B} across the knuckles with a ruler like it's 1952."
-    },
-    {
-      "weapon": "stapler",
-      "text": "{A} staples something to {B}. Nobody looks too closely at what."
-    },
-    {
-      "weapon": "nerfGun",
-      "text": "{A} unloads an entire magazine of Nerf darts directly into {B}'s face."
-    },
-    {
-      "weapon": "permanentMarker",
-      "text": "{A} draws a unibrow on {B} during class. The psychological damage is permanent."
-    },
-    {
-      "weapon": "toyLightsaber",
-      "text": "{A} challenges {B} to a duel and shows no mercy."
-    },
-    {
-      "weapon": "brokenCalc",
-      "text": "{A} throws the 7-only calculator at {B}. It shows 7 on impact."
-    },
-    {
-      "weapon": "drone",
-      "text": "{A} deploys a stapler-armed drone against {B}. It beeps menacingly."
-    },
-    {
-      "weapon": "shoppingCart",
-      "text": "{A} sends {B} flying down the hallway inside a shopping cart."
-    },
-    {
-      "weapon": "skateboard",
-      "text": "{A} hits {B} with the skateboard and grinds away in shame."
-    },
-    {
-      "weapon": "gamingLaptop",
-      "text": "{A} bludgeons {B} with a 4kg gaming laptop. The RGB stays on."
-    },
-    {
-      "weapon": "petGoose",
-      "text": "{A} releases the goose on {B}. The goose needs no further instruction."
-    },
-    {
-      "weapon": "trebuchet",
-      "text": "{A} launches {B} from the trebuchet. Nobody catches them."
-    },
-    {
-      "weapon": "tank",
-      "text": "{A} idles the tank toward {B}. They flee. They are too slow."
-    },
-    {
-      "weapon": "pirateShip",
-      "text": "{A} fires a cannonball from the pirate ship at {B}. It hits. It always hits."
-    },
-    {
-      "weapon": "mechSuit",
-      "text": "{A} activates the mech suit's combat protocols and targets {B}."
-    },
-    {
-      "weapon": "portalGun",
-      "text": "{A} fires the portal gun at {B}. {B} appears 40 feet in the air. Briefly."
-    },
-    {
-      "weapon": "adminAccess",
-      "text": "{A} opens a terminal, types three commands, and {B} simply ceases to exist in the school records."
-    },
-    {
-      "weapon": "wetFloorSign",
-      "text": "{A} places the wet floor sign directly in {B}'s path. Physics does the rest."
-    },
-    {
-      "weapon": "recorderFlute",
-      "text": "{A} plays hot cross buns directly into {B}'s ear at maximum volume."
-    },
-    {
-      "weapon": "compassPoint",
-      "text": "{A} threatens {B} with the pointy end of a maths compass. {B} takes it seriously."
-    },
-    {
-      "weapon": "hallMonitorBadge",
-      "text": "{A} flashes the hall monitor badge and puts {B} under citizen's detention."
-    },
-    {
-      "weapon": "deskChair",
-      "text": "{A} rides the wheely chair full speed into {B}. No brakes. No regrets."
-    },
-    {
-      "weapon": "fireExtinguisher",
-      "text": "{A} hoses {B} down with the fire extinguisher. There was no fire."
-    },
-    {
-      "weapon": "blackHoleEraser",
-      "text": "{A} erases {B} from the whiteboard of reality. Mostly."
-    },
-    {
-      "weapon": "timetableOfDoom",
-      "text": "{A} slides {B} a timetable. {B} reads it and loses the will to continue."
-    }
+    {"weapon": "ruler", "text": "{A} slaps {B} across the knuckles with a ruler like it's 1952."},
+    {"weapon": "stapler", "text": "{A} staples something to {B}. Nobody looks too closely at what."},
+    {"weapon": "nerfGun", "text": "{A} unloads an entire magazine of Nerf darts directly into {B}'s face."},
+    {"weapon": "permanentMarker", "text": "{A} draws a unibrow on {B} during class. The psychological damage is permanent."},
+    {"weapon": "toyLightsaber", "text": "{A} challenges {B} to a duel and shows no mercy."},
+    {"weapon": "brokenCalc", "text": "{A} throws the 7-only calculator at {B}. It shows 7 on impact."},
+    {"weapon": "drone", "text": "{A} deploys a stapler-armed drone against {B}. It beeps menacingly."},
+    {"weapon": "shoppingCart", "text": "{A} sends {B} flying down the hallway inside a shopping cart."},
+    {"weapon": "skateboard", "text": "{A} hits {B} with the skateboard and grinds away in shame."},
+    {"weapon": "gamingLaptop", "text": "{A} bludgeons {B} with a 4kg gaming laptop. The RGB stays on."},
+    {"weapon": "petGoose", "text": "{A} releases the goose on {B}. The goose needs no further instruction."},
+    {"weapon": "trebuchet", "text": "{A} launches {B} from the trebuchet. Nobody catches them."},
+    {"weapon": "tank", "text": "{A} idles the tank toward {B}. They flee. They are too slow."},
+    {"weapon": "pirateShip", "text": "{A} fires a cannonball from the pirate ship at {B}. It hits. It always hits."},
+    {"weapon": "mechSuit", "text": "{A} activates the mech suit's combat protocols and targets {B}."},
+    {"weapon": "portalGun", "text": "{A} fires the portal gun at {B}. {B} appears 40 feet in the air. Briefly."},
+    {"weapon": "adminAccess", "text": "{A} opens a terminal, types three commands, and {B} simply ceases to exist in the school records."},
+    {"weapon": "wetFloorSign", "text": "{A} places the wet floor sign directly in {B}'s path. Physics does the rest."},
+    {"weapon": "recorderFlute", "text": "{A} plays hot cross buns directly into {B}'s ear at maximum volume."},
+    {"weapon": "compassPoint", "text": "{A} threatens {B} with the pointy end of a maths compass. {B} takes it seriously."},
+    {"weapon": "hallMonitorBadge", "text": "{A} flashes the hall monitor badge and puts {B} under citizen's detention."},
+    {"weapon": "deskChair", "text": "{A} rides the wheely chair full speed into {B}. No brakes. No regrets."},
+    {"weapon": "fireExtinguisher", "text": "{A} hoses {B} down with the fire extinguisher. There was no fire."},
+    {"weapon": "blackHoleEraser", "text": "{A} erases {B} from the whiteboard of reality. Mostly."},
+    {"weapon": "timetableOfDoom", "text": "{A} slides {B} a timetable. {B} reads it and loses the will to continue."}
   ],
   "adminEvents": [
     "{A} uses Administrative Access to delete all of {B}'s grades. They never existed academically.",
     "{A} found {B}'s search history and posted them onto the school newsletter.",
     "{A} disables gravity in the east wing. {B} does not adapt quickly.",
     "{A} removes {B} from existence using a single DELETE query.",
-    "{A} sets {B}'s GPA to negative infinity and logs off.",
+    "{A} sets {B}'s ATAR to negative infinity and logs off.",
     "{A} redirects {B}'s locker to the void.",
     "{A} reassigns {B} to a school that doesn't exist in a postcode that doesn't exist.",
     "{A} overwrites {B}'s timetable with 9 consecutive periods of PE.",
@@ -868,68 +218,21 @@
     "Asked a question during the last five minutes of class. Did not survive the reaction."
   ],
   "healEvents": [
-    {
-      "id": "h1",
-      "text": "{A} was found with white substance dripping from their pants",
-      "heal": 1
-    },
-    {
-      "id": "h2",
-      "text": "{A} finds a stash of snacks hidden behind the gym bleachers and helps themselves."
-    },
-    {
-      "id": "h3",
-      "text": "{A} meditates in the library for an entire free period. Unironically helps."
-    },
-    {
-      "id": "h4",
-      "text": "{A} skips PE by hiding in a bathroom cubicle and emerges surprisingly refreshed."
-    },
-    {
-      "id": "h5",
-      "text": "{A} drinks directly from the water fountain for three minutes straight."
-    },
-    {
-      "id": "h6",
-      "text": "{A} sweet-talks the canteen lady into an extra serve. The extra serve was massive."
-    },
-    {
-      "id": "h7",
-      "text": "{A} naps through double maths and wakes up a new person."
-    },
-    {
-      "id": "h8",
-      "text": "{A} does exactly one 1 push-up during PE and calls it a full recovery session."
-    },
-    {
-      "id": "h9",
-      "text": "{A} finds a vending machine restock and clears out the healthy options. Questionable, but effective."
-    },
-    {
-      "id": "h10",
-      "text": "{A} receives an unsolicited hug from the school counsellor. It works."
-    },
-    {
-      "id": "h11",
-      "text": "{A} discovers the staff fridge and helps themselves to someone's clearly labelled yoghurt."
-    },
-    {
-      "id": "h12",
-      "text": "{A} sits in the sun during lunch and simply absorbs vitality like a lizard."
-    },
-    {
-      "id": "h13",
-      "text": "{A} was sent to the school nurse who put ice on them.",
-      "heal": 100
-    },
-    {
-      "id": "h14",
-      "text": "{A} calls their mum to complain about school. She says 'just drink some water'. It works."
-    },
-    {
-      "id": "h15",
-      "text": "{A} spends recess doing absolutely nothing and recovers at an alarming rate."
-    }
+    {"id": "h1", "text": "{A} was found with white substance dripping from their pants", "heal": 1},
+    {"id": "h2", "text": "{A} finds a stash of snacks hidden behind the gym bleachers and helps themselves."},
+    {"id": "h3", "text": "{A} meditates in the library for an entire free period. Unironically helps."},
+    {"id": "h4", "text": "{A} skips PE by hiding in a bathroom cubicle and emerges surprisingly refreshed."},
+    {"id": "h5", "text": "{A} drinks directly from the water fountain for three minutes straight."},
+    {"id": "h6", "text": "{A} sweet-talks the canteen lady into an extra serve. The extra serve was massive."},
+    {"id": "h7", "text": "{A} naps through double maths and wakes up a new person."},
+    {"id": "h8", "text": "{A} does exactly one 1 push-up during PE and calls it a full recovery session."},
+    {"id": "h9", "text": "{A} finds a vending machine restock and clears out the healthy options. Questionable, but effective."},
+    {"id": "h10", "text": "{A} receives an unsolicited hug from the school counsellor. It works."},
+    {"id": "h11", "text": "{A} discovers the staff fridge and helps themselves to someone's clearly labelled yoghurt."},
+    {"id": "h12", "text": "{A} sits in the sun during lunch and simply absorbs vitality like a lizard."},
+    {"id": "h13", "text": "{A} was sent to the school nurse who put ice on them.", "heal": 100},
+    {"id": "h14", "text": "{A} calls their mum to complain about school. She says 'just drink some water'. It works."},
+    {"id": "h15", "text": "{A} spends recess doing absolutely nothing and recovers at an alarming rate."}
   ],
   "baseCombatMessages": [
     "{A} corners {B} by the lockers and makes their point physically.",
@@ -944,5 +247,47 @@
     "{A} body-slams {B} in the middle of the canteen queue. The lunch lady sees nothing.",
     "{A} sends {B} a strongly worded note that turns physical very quickly.",
     "{A} uses {B} as a demonstration prop during an unsanctioned self-defence lesson."
+  ],
+  "killMessages": [
+    "{A} sent {B} to the shadow realm. Permanently.",
+    "{B} has been eliminated by {A}. No flowers, please.",
+    "{A} made sure {B} wouldn't be finishing this semester.",
+    "{B} tried. {A} tried harder. {B} is gone.",
+    "{A} filed {B} under 'no longer attending'.",
+    "{A} escorted {B} off the premises. Permanently.",
+    "{B} was last seen running from {A}. They did not get far.",
+    "{A} removed {B} from the equation entirely.",
+    "{B} has been logged out by {A}. Session terminated.",
+    "{A} gave {B} an early mark. A permanent one.",
+    "{B} failed to survive {A}. Better luck next life.",
+    "{A} gooned on {B} and gave them PTSD"
+  ],
+  "rejectedMessages": [
+    "{A} now despises {B} and has marked them as a target.",
+    "{A} did not take the rejection well. {B} should watch their back.",
+    "{A} swore revenge on {B} on the spot. It was awkward for everyone.",
+    "{A} is never forgiving {B} for this. Ever.",
+    "{A} added {B} to a very short, very serious list."
+  ],
+  "acceptedMessages": [
+    "{A} and {B} are now allies. They will not attack each other. Probably.",
+    "{A} and {B} shake on it. A dangerous friendship is born.",
+    "{A} and {B} have formed a pact. The others should be worried.",
+    "{B} accepted {A}'s feelings. A relationship was formed through shared hatred of math.",
+    "{A} and {B} are ride or die now. Until they aren't."
+  ],
+  "betrayalMessages": [
+    "{A} snitched on {B} for using AI for homework.",
+    "{A} decided {B} was more useful as a target. Friendship cancelled.",
+    "{A} looked {B} dead in the eyes and chose violence. Ex-ally status confirmed.",
+    "{A} decided {B} wasn't useful anymore and killed their minecraft dog.",
+    "{A} betrayed {B} without hesitation. Some things are more important than friendship."
+  ],
+  "allianceMessages": [
+    "{A} and {B} agree to have each other's backs. For now.",
+    "{A} saves {B}'s seat. A pact is forged.",
+    "{A} and {B} are spotted walking to class together. Ship confirmed.",
+    "{A} slips {B} a note that just says 'I got you'. {B} nods solemnly.",
+    "{A} and {B} make eye contact across the room and reach a silent agreement."
   ]
 }
