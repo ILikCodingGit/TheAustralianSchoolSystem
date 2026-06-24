@@ -72,6 +72,17 @@ function getDefense(participant)
   return def;
 }
 
+function areAllied(a, b)
+{
+  return a.allies && a.allies.includes(b.name) && b.allies && b.allies.includes(a.name);
+}
+
+function breakAlliance(a, b)
+{
+  if (a.allies) a.allies = a.allies.filter(n => n !== b.name);
+  if (b.allies) b.allies = b.allies.filter(n => n !== a.name);
+}
+
 function killParticipant(participant, killer, cause)
 {
   participant.alive = false;
@@ -81,6 +92,7 @@ function killParticipant(participant, killer, cause)
   {
     killer.kills++;
     killer.revengeTarget = null;
+    breakAlliance(killer, participant);
   }
   if (participant.revengeTarget)
   {
@@ -90,12 +102,18 @@ function killParticipant(participant, killer, cause)
       target.revengeTarget = null;
     }
   }
+  gameState.participants.forEach(p =>
+  {
+    if (p.allies) p.allies = p.allies.filter(n => n !== participant.name);
+    if (p.enemies) p.enemies = p.enemies.filter(n => n !== participant.name);
+  });
   gameState.deadThisDay.push(participant);
 }
 
 function tryBuyItems(participant)
 {
-  const needsHealing = participant.health < 30;
+  const needsHealing = participant.health < 40;
+  const desperateHealing = participant.health < 20;
   const messages = [];
   const trait = participant.trait;
 
@@ -104,7 +122,7 @@ function tryBuyItems(participant)
     if (!needsHealing) return messages;
     const healItems = eventsData.shopItems
       .filter(i => i.consumable && i.cost <= participant.money)
-      .sort((a, b) => a.cost - b.cost);
+      .sort((a, b) => b.heal - a.heal);
     const item = healItems[0];
     if (item)
     {
@@ -113,6 +131,18 @@ function tryBuyItems(participant)
       participant.health = Math.min(100, participant.health + item.heal);
       const gained = participant.health - before;
       messages.push(`<span class="nameTag">${participant.name}</span> reluctantly spent $${item.cost} on a <strong>${item.name}</strong>, recovering ${gained} HP. (${participant.health} HP)`);
+    } else if (desperateHealing && participant.money > 0) {
+      const anyHeal = eventsData.shopItems
+        .filter(i => i.consumable && i.cost <= participant.money)
+        .sort((a, b) => a.cost - b.cost)[0];
+      if (anyHeal)
+      {
+        participant.money -= anyHeal.cost;
+        const before = participant.health;
+        participant.health = Math.min(100, participant.health + anyHeal.heal);
+        const gained = participant.health - before;
+        messages.push(`<span class="nameTag">${participant.name}</span> desperately spent $${anyHeal.cost} on a <strong>${anyHeal.name}</strong>, recovering ${gained} HP. (${participant.health} HP)`);
+      }
     }
     return messages;
   }
@@ -233,6 +263,8 @@ function resolveCombat(attacker, defender)
     {
       defender.revengeTarget = attacker.name;
     }
+    if (!defender.enemies) defender.enemies = [];
+    if (!defender.enemies.includes(attacker.name)) defender.enemies.push(attacker.name);
   }
 
   return { text: combatMsg, damage: actualDamage };
@@ -253,8 +285,53 @@ function pickAttackerAndTarget(aliveNow)
     return { attacker, defender, isRevenge: true };
   }
 
+  const enemyAttackers = aliveNow.filter(p => p.enemies && p.enemies.length > 0);
+  if (enemyAttackers.length > 0 && Math.random() < 0.4)
+  {
+    const attacker = randFrom(enemyAttackers);
+    const validEnemies = attacker.enemies.filter(name => aliveNow.some(p => p.name === name));
+    if (validEnemies.length > 0)
+    {
+      const targetName = randFrom(validEnemies);
+      const defender = aliveNow.find(p => p.name === targetName);
+      if (defender) return { attacker, defender, isRevenge: false };
+    }
+  }
+
+  let attempts = 0;
+  while (attempts < 10)
+  {
+    const [a, b] = pickTwo(aliveNow);
+    if (!areAllied(a, b)) return { attacker: a, defender: b, isRevenge: false };
+    if (Math.random() < 0.20)
+    {
+      breakAlliance(a, b);
+      if (!a.enemies) a.enemies = [];
+      if (!a.enemies.includes(b.name)) a.enemies.push(b.name);
+      return { attacker: a, defender: b, isRevenge: false, isBetrayal: true };
+    }
+    attempts++;
+  }
+
   const [a, b] = pickTwo(aliveNow);
   return { attacker: a, defender: b, isRevenge: false };
+}
+
+function processRelationshipEvent(ev, a, b, dayLog)
+{
+  if (ev.id === 'r38')
+  {
+    if (!a.enemies) a.enemies = [];
+    if (!a.enemies.includes(b.name)) a.enemies.push(b.name);
+    a.revengeTarget = b.name;
+  }
+  if (ev.id === 'r39')
+  {
+    if (!a.allies) a.allies = [];
+    if (!b.allies) b.allies = [];
+    if (!a.allies.includes(b.name)) a.allies.push(b.name);
+    if (!b.allies.includes(a.name)) b.allies.push(a.name);
+  }
 }
 
 function generateDayEvents()
@@ -271,6 +348,9 @@ function generateDayEvents()
   const guaranteeElim = gameState.day % 5 === 0 && gameState.day > 0;
   let elimHappened = false;
 
+  const randomDeathDue = gameState.daysSinceRandomDeath >= 9;
+  const randomDeathRoll = Math.random() < 0.12 || randomDeathDue;
+
   const shopMessages = [];
   alive.forEach(p =>
   {
@@ -285,6 +365,19 @@ function generateDayEvents()
   const eventCount = Math.max(3, Math.floor(alive.length * 0.8));
   const shuffled = [...alive].sort(() => Math.random() - 0.5);
 
+  if (randomDeathRoll && alive.length >= 2)
+  {
+    const victim = randFrom(alive);
+    const deathMsg = randFrom(eventsData.deathMessages);
+    killParticipant(victim, null, deathMsg);
+    elimHappened = true;
+    gameState.daysSinceRandomDeath = 0;
+  }
+  else
+  {
+    gameState.daysSinceRandomDeath = (gameState.daysSinceRandomDeath || 0) + 1;
+  }
+
   for (let i = 0; i < eventCount && shuffled.filter(p => p.alive).length > 1; i++)
   {
     const aliveNow = shuffled.filter(p => p.alive);
@@ -297,18 +390,20 @@ function generateDayEvents()
 
     if (roll < 0.30 && aliveNow.length >= 2)
     {
-      const { attacker: a, defender: b, isRevenge } = pickAttackerAndTarget(aliveNow);
+      const { attacker: a, defender: b, isRevenge, isBetrayal } = pickAttackerAndTarget(aliveNow);
       const { text, damage } = resolveCombat(a, b);
       const hpMsg = b.health > 0
         ? ` <span class="nameTag">${b.name}</span> is at ${b.health} HP.`
         : '';
       const revengePrefix = isRevenge ? `<span class="logTag revengeTag">REVENGE</span> ` : '';
-      dayLog.push({ type: 'combat', text: `${revengePrefix}${text} (${Math.max(0, damage)} damage)${hpMsg}` });
+      const betrayalPrefix = isBetrayal ? `<span class="logTag revengeTag">BETRAYAL</span> ` : '';
+      dayLog.push({ type: 'combat', text: `${revengePrefix}${betrayalPrefix}${text} (${Math.max(0, damage)} damage)${hpMsg}` });
 
       if (b.health <= 0 && b.alive)
       {
         killParticipant(b, a, null);
         elimHappened = true;
+        dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${b.name}</span> was eliminated by <span class="nameTag">${a.name}</span>.` });
       }
     }
     else
@@ -317,10 +412,10 @@ function generateDayEvents()
       const others = aliveNow.filter(p => p !== a);
       const b = others.length ? randFrom(others) : null;
 
-      if (roll < 0.38 && a.health < 80)
+      if (roll < 0.38 && a.health < 70)
       {
         const ev = randFrom(eventsData.healEvents);
-        const healAmt = randInt(10, 30);
+        const healAmt = randInt(5, 15);
         const before = a.health;
         a.health = Math.min(100, a.health + healAmt);
         const gained = a.health - before;
@@ -371,6 +466,7 @@ function generateDayEvents()
           b.money = Math.max(0, b.money - ev.moneyLoss);
           text += ` (${b.name} -$${ev.moneyLoss})`;
         }
+        processRelationshipEvent(ev, a, b, dayLog);
         dayLog.push({ type: 'random', text });
       }
     }
@@ -400,6 +496,7 @@ function generateDayEvents()
       if (prey.health <= 0 && prey.alive)
       {
         killParticipant(prey, hunter, null);
+        dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${prey.name}</span> was eliminated by <span class="nameTag">${hunter.name}</span>.` });
       }
     }
   }
@@ -408,8 +505,34 @@ function generateDayEvents()
   {
     gameState.deadThisDay.forEach(d =>
     {
-      dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${d.name}</span> ${d.causeOfDeath}` });
+      if (!d.killedBy)
+      {
+        dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${d.name}</span> ${d.causeOfDeath}` });
+      }
     });
+  }
+
+  if (alive.length >= 3 && Math.random() < 0.15)
+  {
+    const candidates = alive.filter(p => p.alive);
+    if (candidates.length >= 2)
+    {
+      const [pa, pb] = pickTwo(candidates);
+      if (!areAllied(pa, pb) && !(pa.enemies && pa.enemies.includes(pb.name)))
+      {
+        if (!pa.allies) pa.allies = [];
+        if (!pb.allies) pb.allies = [];
+        pa.allies.push(pb.name);
+        pb.allies.push(pa.name);
+        const friendshipLines = [
+          `<span class="nameTag">${pa.name}</span> and <span class="nameTag">${pb.name}</span> agree to have each other's backs. For now.`,
+          `<span class="nameTag">${pa.name}</span> and <span class="nameTag">${pb.name}</span> form an uneasy alliance over shared hatred of the cafeteria menu.`,
+          `<span class="nameTag">${pa.name}</span> saves <span class="nameTag">${pb.name}</span>'s seat. A pact is forged.`,
+          `<span class="nameTag">${pa.name}</span> and <span class="nameTag">${pb.name}</span> are spotted walking to class together. Alliance confirmed.`
+        ];
+        dayLog.push({ type: 'normal', text: randFrom(friendshipLines) });
+      }
+    }
   }
 
   gameState.eventLog.push({ day: gameState.day, events: dayLog });
@@ -459,11 +582,14 @@ function startGame()
       causeOfDeath: null,
       killedBy: null,
       revengeTarget: null,
+      allies: [],
+      enemies: [],
       trait: randFrom(TRAITS)
     })),
     eventLog: [],
     day: 1,
-    deadThisDay: []
+    deadThisDay: [],
+    daysSinceRandomDeath: 0
   };
 
   document.getElementById('setupScreen').style.display = 'none';
