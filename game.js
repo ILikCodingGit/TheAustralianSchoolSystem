@@ -324,6 +324,7 @@ function processRelationshipEvent(ev, a, b, dayLog)
     if (!a.enemies) a.enemies = [];
     if (!a.enemies.includes(b.name)) a.enemies.push(b.name);
     a.revengeTarget = b.name;
+    dayLog.push({ type: 'normal', text: `<span class="logTag revengeTag">REJECTED</span> <span class="nameTag">${a.name}</span> now despises <span class="nameTag">${b.name}</span> and has marked them as a target.` });
   }
   if (ev.id === 'r39')
   {
@@ -331,6 +332,7 @@ function processRelationshipEvent(ev, a, b, dayLog)
     if (!b.allies) b.allies = [];
     if (!a.allies.includes(b.name)) a.allies.push(b.name);
     if (!b.allies.includes(a.name)) b.allies.push(a.name);
+    dayLog.push({ type: 'normal', text: `<span class="logTag acceptTag">ACCEPTED</span> <span class="nameTag">${a.name}</span> and <span class="nameTag">${b.name}</span> are now allies. They will not attack each other. Probably.` });
   }
 }
 
@@ -372,6 +374,7 @@ function generateDayEvents()
     killParticipant(victim, null, deathMsg);
     elimHappened = true;
     gameState.daysSinceRandomDeath = 0;
+    dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${victim.name}</span> ${deathMsg}` });
   }
   else
   {
@@ -396,8 +399,11 @@ function generateDayEvents()
         ? ` <span class="nameTag">${b.name}</span> is at ${b.health} HP.`
         : '';
       const revengePrefix = isRevenge ? `<span class="logTag revengeTag">REVENGE</span> ` : '';
-      const betrayalPrefix = isBetrayal ? `<span class="logTag revengeTag">BETRAYAL</span> ` : '';
-      dayLog.push({ type: 'combat', text: `${revengePrefix}${betrayalPrefix}${text} (${Math.max(0, damage)} damage)${hpMsg}` });
+      dayLog.push({ type: 'combat', text: `${revengePrefix}${text} (${Math.max(0, damage)} damage)${hpMsg}` });
+      if (isBetrayal)
+      {
+        dayLog.push({ type: 'normal', text: `<span class="logTag betrayalTag">BETRAYAL</span> <span class="nameTag">${a.name}</span> stabbed their former ally <span class="nameTag">${b.name}</span> in the back. The alliance is over.` });
+      }
 
       if (b.health <= 0 && b.alive)
       {
@@ -499,17 +505,6 @@ function generateDayEvents()
         dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${prey.name}</span> was eliminated by <span class="nameTag">${hunter.name}</span>.` });
       }
     }
-  }
-
-  if (gameState.deadThisDay.length > 0)
-  {
-    gameState.deadThisDay.forEach(d =>
-    {
-      if (!d.killedBy)
-      {
-        dayLog.push({ type: 'death', text: `<span class="nameTag deathName">${d.name}</span> ${d.causeOfDeath}` });
-      }
-    });
   }
 
   if (alive.length >= 3 && Math.random() < 0.15)
